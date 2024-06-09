@@ -1,9 +1,9 @@
 ﻿namespace TJC.Logging.Extensions;
 
-public static class LogMetadataExtension
+internal static class LogMetadataExtension
 {
     // ReSharper disable ExplicitCallerInfoArgument
-    public static void LogMetadata(this ILogger              logger,
+    internal static void LogMetadata(this ILogger              logger,
                                    string                    message    = "",
                                    LogLevel                  logLevel   = LogLevel.Trace,
                                    int                       frameIndex = 0,
