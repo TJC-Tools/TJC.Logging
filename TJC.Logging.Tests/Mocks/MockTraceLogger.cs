@@ -11,7 +11,7 @@ internal class MockTraceLogger() : ILogger
     public string? LastMessage { get; private set; }
 
     /// <summary>
-    /// Not implemented for Trace
+    /// Not implemented for Trace.
     /// </summary>
     /// <typeparam name="TState"></typeparam>
     /// <param name="state"></param>
@@ -21,17 +21,26 @@ internal class MockTraceLogger() : ILogger
         null;
 
     /// <summary>
-    /// Trace everything by default
+    /// Trace everything by default.
     /// </summary>
     /// <param name="logLevel"></param>
     /// <returns></returns>
     public bool IsEnabled(LogLevel logLevel) =>
         true;
 
-    public void Log<TState>(LogLevel                         logLevel,
-                            EventId                          eventId,
-                            TState                           state,
-                            Exception?                       exception,
+    /// <summary>
+    /// Log the message to Trace.
+    /// </summary>
+    /// <typeparam name="TState"></typeparam>
+    /// <param name="logLevel"></param>
+    /// <param name="eventId"></param>
+    /// <param name="state"></param>
+    /// <param name="exception"></param>
+    /// <param name="formatter"></param>
+    public void Log<TState>(LogLevel logLevel,
+                            EventId eventId,
+                            TState state,
+                            Exception? exception,
                             Func<TState, Exception?, string> formatter)
     {
         if (!IsEnabled(logLevel))
