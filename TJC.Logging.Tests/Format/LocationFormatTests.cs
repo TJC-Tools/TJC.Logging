@@ -7,67 +7,115 @@ public class LocationFormatTests
 
     [TestInitialize]
     public void Initialize() =>
-        Settings.Settings.ReloadDefaults();
-
-    [TestMethod]
-    public void IncludeLineNumberOnly()
-    {
-        Settings.Settings.Instance.Formatting.ExcludeAll();
-        Settings.Settings.Instance.Formatting.Location.Include = true;
-        Settings.Settings.Instance.Formatting.Location.IncludeLineNumber = true;
-        _logger.Mark();
-        Assert.AreEqual("[21]", _logger.LastMessage);
-    }
+        Settings.Settings.ReloadDefaults(); // Reset settings before each test
 
     [TestMethod]
     public void IncludeTypeMemberAndLineNumber()
     {
+        // Arrange
         Settings.Settings.Instance.Formatting.ExcludeAll();
         Settings.Settings.Instance.Formatting.Location.IncludeAll();
-        _logger.Mark();
-        Assert.AreEqual($"[{typeof(LocationFormatTests).Namespace}.{nameof(LocationFormatTests)}.{nameof(IncludeTypeMemberAndLineNumber)}.30]", _logger.LastMessage);
+        Settings.Settings.Instance.Formatting.Location.Prefix = string.Empty;
+        Settings.Settings.Instance.Formatting.Location.Suffix = string.Empty;
+        Settings.Settings.Instance.Formatting.Location.Separator = string.Empty;
+
+        // Act
+        _logger.LogMark();
+
+        // Assert
+        var location = string.Concat(typeof(LocationFormatTests).Namespace, nameof(LocationFormatTests), nameof(IncludeTypeMemberAndLineNumber), "23");
+        Assert.AreEqual(location, _logger.LastMessage);
+    }
+
+    [TestMethod]
+    public void IncludeLineNumberOnly()
+    {
+        // Arrange
+        Settings.Settings.Instance.Formatting.ExcludeAll();
+        Settings.Settings.Instance.Formatting.Location.Include = true;
+        Settings.Settings.Instance.Formatting.Location.IncludeLineNumber = true;
+        Settings.Settings.Instance.Formatting.Location.Prefix = string.Empty;
+        Settings.Settings.Instance.Formatting.Location.Suffix = string.Empty;
+
+        // Act
+        _logger.LogMark();
+
+        // Assert
+        Assert.AreEqual("41", _logger.LastMessage);
     }
 
     [TestMethod]
     public void IncludeTypeNameOnly()
     {
+        // Arrange
         Settings.Settings.Instance.Formatting.ExcludeAll();
         Settings.Settings.Instance.Formatting.Location.Include = true;
         Settings.Settings.Instance.Formatting.Location.IncludeType = true;
-        _logger.Mark();
-        Assert.AreEqual($"[{nameof(LocationFormatTests)}]", _logger.LastMessage);
+        Settings.Settings.Instance.Formatting.Location.Prefix = string.Empty;
+        Settings.Settings.Instance.Formatting.Location.Suffix = string.Empty;
+
+        // Act
+        _logger.LogMark();
+
+        // Assert
+        Assert.AreEqual(nameof(LocationFormatTests), _logger.LastMessage);
     }
 
     [TestMethod]
     public void IncludeMemberNameOnly()
     {
+        // Arrange
         Settings.Settings.Instance.Formatting.ExcludeAll();
         Settings.Settings.Instance.Formatting.Location.Include = true;
         Settings.Settings.Instance.Formatting.Location.IncludeMember = true;
-        _logger.Mark();
-        Assert.AreEqual($"[{nameof(IncludeMemberNameOnly)}]", _logger.LastMessage);
+        Settings.Settings.Instance.Formatting.Location.Prefix = string.Empty;
+        Settings.Settings.Instance.Formatting.Location.Suffix = string.Empty;
+
+        // Act
+        _logger.LogMark();
+
+        // Assert
+        Assert.AreEqual(nameof(IncludeMemberNameOnly), _logger.LastMessage);
     }
 
     [TestMethod]
     public void IncludeTypeAndMemberName()
     {
+        // Arrange
         Settings.Settings.Instance.Formatting.ExcludeAll();
         Settings.Settings.Instance.Formatting.Location.Include = true;
         Settings.Settings.Instance.Formatting.Location.IncludeType = true;
         Settings.Settings.Instance.Formatting.Location.IncludeMember = true;
-        _logger.Mark();
-        Assert.AreEqual($"[{nameof(LocationFormatTests)}.{nameof(IncludeTypeAndMemberName)}]", _logger.LastMessage);
+        Settings.Settings.Instance.Formatting.Location.Prefix = string.Empty;
+        Settings.Settings.Instance.Formatting.Location.Suffix = string.Empty;
+        Settings.Settings.Instance.Formatting.Location.Separator = string.Empty;
+
+        // Act
+        _logger.LogMark();
+
+        // Assert
+        var location = string.Concat(nameof(LocationFormatTests), nameof(IncludeTypeAndMemberName));
+        Assert.AreEqual(location, _logger.LastMessage);
     }
 
     [TestMethod]
     public void IncludeNamespaceTypeAndMemberName()
     {
+        // Arrange
         Settings.Settings.Instance.Formatting.ExcludeAll();
         Settings.Settings.Instance.Formatting.Location.Include = true;
         Settings.Settings.Instance.Formatting.Location.IncludeNamespace = true;
         Settings.Settings.Instance.Formatting.Location.IncludeType = true;
         Settings.Settings.Instance.Formatting.Location.IncludeMember = true;
-        _logger.Mark();
-        Assert.AreEqual($"[{typeof(LocationFormatTests).Namespace}.{nameof(LocationFormatTests)}.{nameof(IncludeNamespaceTypeAndMemberName)}]", _logger.LastMessage);
+        Settings.Settings.Instance.Formatting.Location.Prefix = string.Empty;
+        Settings.Settings.Instance.Formatting.Location.Suffix = string.Empty;
+        Settings.Settings.Instance.Formatting.Location.Separator = string.Empty;
+
+        // Act
+        _logger.LogMark();
+
+        // Assert
+        var location = string.Concat(typeof(LocationFormatTests).Namespace, nameof(LocationFormatTests), nameof(IncludeNamespaceTypeAndMemberName));
+        Assert.AreEqual(location, _logger.LastMessage);
     }
 }
