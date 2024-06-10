@@ -67,44 +67,34 @@ jobs:
       ####################################################################################################
       ###                                     Prepare to Run Tests                                     ###
       ####################################################################################################
-      - name: Setup MS-Build
-        uses: microsoft/setup-msbuild@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v2
+        with:
+          dotnet-version: '8.0.x'
+      
+      - name: Restore dependencies
         if: ${{ !fromJSON(steps.getCanSkip.outputs.result) }}
-
-      - name: Setup NuGet
-        uses: NuGet/setup-nuget@v2.0.0
-        if: ${{ !fromJSON(steps.getCanSkip.outputs.result) }}
-
-      - name: Restore Packages for ${{ matrix.solution }}
-        shell: cmd
-        if: ${{ !fromJSON(steps.getCanSkip.outputs.result) }}
-        run: nuget restore "${{ matrix.solution }}"
+        run: dotnet restore
 
       ####################################################################################################
       ###                                          Run Tests                                           ###
       ####################################################################################################
-      # Test 1 - Build Project
-      - name: Build ${{ matrix.solution }}
-        shell: cmd
+
+      - name: Build
         if: ${{ !fromJSON(steps.getCanSkip.outputs.result) }}
-        run: msbuild "${{ matrix.solution }}" -t:rebuild -property:Configuration=Release -p:OutputPath=${{ env.build_directory }}
+        run: dotnet build --no-restore
 
       - name: Error - Build Failed for ${{ matrix.solution }}
         if: failure()
         uses: ./.github/actions/tools/annotation/error
         with:
           message: '[Error] Build Failed for ${{ matrix.solution }}'
-
+      
       # Test 2 - Run All Unit Tests within Project
       # Note: This Action Requires Windows
-      - name: Run Tests for ${{ matrix.solution }}
+      - name: Run Tests
         if: ${{ !fromJSON(steps.getCanSkip.outputs.result) }}
-        uses: microsoft/vstest-action@v1.0.0
-        with:
-          testAssembly: \*${{ env.test_project_suffix }}.dll
-          searchFolder: .\*\${{ env.build_directory }}\
-          runInParallel: true
-          ifNoFilesFound: ignore
+        run: dotnet test --no-build --verbosity normal
 
       - name: Error - Tests Failed for ${{ matrix.solution }}
         if: failure()
