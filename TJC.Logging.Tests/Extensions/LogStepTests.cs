@@ -28,6 +28,5 @@ public class LogStepTests
         Assert.AreEqual("Step 1", step1);
         Assert.AreEqual("Step 2", step2);
         Assert.AreEqual("Step 3", step3);
-        Assert.Fail("Testing Failure");
     }
 }
