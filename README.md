@@ -3,7 +3,7 @@
 ## Extensions
 > Extensions for `ILogger`
 
-### [Logger.Mark()](TJC.Logging/Extensions/MarkExtension.cs)
+### [Logger.LogMark()](TJC.Logging/Extensions/LogMarkExtension.cs)
 - To log information about the current location
 
 ### [Logger.LogStep(int step)](TJC.Logging/Extensions/LogStepExtension.cs)
