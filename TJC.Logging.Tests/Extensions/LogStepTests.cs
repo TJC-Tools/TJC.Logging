@@ -7,15 +7,26 @@ public class LogStepTests
 
     [TestInitialize]
     public void Initialize() =>
-        Settings.Settings.ReloadDefaults();
+        Settings.Settings.ReloadDefaults(); // Reset settings before each test
 
     [TestMethod]
-    public void LogStepTest()
+    public void LogStep_MultipleCall_Increments()
     {
+        // Arrange
         Settings.Settings.Instance.Formatting.ExcludeAll();
-        _logger.LogStep(1);
-        Assert.AreEqual("Step 1", _logger.LastMessage);
-        _logger.LogStep(2);
-        Assert.AreEqual("Step 2", _logger.LastMessage);
+
+        // Act
+        var step = 0;
+        _logger.LogStep(ref step);
+        var step1 = _logger.LastMessage;
+        _logger.LogStep(ref step);
+        var step2 = _logger.LastMessage;
+        _logger.LogStep(ref step);
+        var step3 = _logger.LastMessage;
+
+        // Assert
+        Assert.AreEqual("Step 1", step1);
+        Assert.AreEqual("Step 2", step2);
+        Assert.AreEqual("Step 3", step3);
     }
 }
