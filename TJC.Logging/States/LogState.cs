@@ -7,16 +7,16 @@
 /// <param name="memberName">Leave blank unless overriding with a value from an earlier frame</param>
 /// <param name="lineNumber">Leave blank unless overriding with a value from an earlier frame</param>
 internal class LogState(
-    int                       frameIndex = 0,
+    int frameIndex = 0,
     [CallerMemberName] string memberName = "",
-    [CallerLineNumber] int    lineNumber = 0)
-    : IFormattable
+    [CallerLineNumber] int lineNumber = 0)
+    : ILogState
 {
     #region Properties
 
-    internal Type? CallingType { get; } = GetCallingType(frameIndex + 1);
-    internal string MemberName { get; } = memberName;
-    internal int LineNumber { get; } = lineNumber;
+    public Type? CallingType { get; } = GetCallingType(frameIndex + 1);
+    public string MemberName { get; } = memberName;
+    public int LineNumber { get; } = lineNumber;
 
     #endregion
 
@@ -25,9 +25,9 @@ internal class LogState(
     private static Type? GetCallingType(int frameIndex)
     {
         var stackTrace = new StackTrace();
-        var frame      = stackTrace.GetFrame(frameIndex + 1);
-        var method     = frame?.GetMethod();
-        var type       = method?.ReflectedType;
+        var frame = stackTrace.GetFrame(frameIndex + 1);
+        var method = frame?.GetMethod();
+        var type = method?.ReflectedType;
         return type;
     }
 
@@ -39,7 +39,13 @@ internal class LogState(
         ToString(null, null);
 
     public string ToString(string? format, IFormatProvider? formatProvider) =>
-        this.FormatLocation();
+        Settings.Settings.Instance.Formatting.ToString(format, this);
+
+    #endregion
+
+    #region IFormatProvider
+
+    public object? GetFormat(Type? formatType) => this;
 
     #endregion
 }
