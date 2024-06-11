@@ -1,10 +1,22 @@
 [![NuGet Version and Downloads count](https://buildstats.info/nuget/TJC.Logging)](https://www.nuget.org/packages/TJC.Logging)
 
+## Format
+- Timestamp
+- Location (`Namespace`, `Type Name`, `Member Name`, `Line Number`)
+
 ## Extensions
 > Extensions for `ILogger`
 
 ### [ILogger.LogMark()](TJC.Logging/Extensions/LogMarkExtension.cs)
-- To log information about the current location
+> Logs detailed information about the current execution location.
 
 ### [ILogger.LogStep(int step)](TJC.Logging/Extensions/LogStepExtension.cs)
-- This is intended for debugging only, by logging the current step in the active method
+> Logs detailed information about the current execution location, including a step number for debugging purposes.
+#### Example
+```csharp
+var step = 0; 
+ILogger.LogStep(ref step);
+// Do first step
+ILogger.LogStep(ref step);
+// Do second step
+```
