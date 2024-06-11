@@ -72,6 +72,12 @@ jobs:
         uses: actions/setup-dotnet@v2
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
+        
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v2.0.0
+        
+      - name: Restore NuGet
+        run: nuget restore ${{ env.PROJECT_FILE_PATH }}
       
       - name: Restore Dependencies
         if: ${{ !fromJSON(steps.getCanSkip.outputs.result) }}

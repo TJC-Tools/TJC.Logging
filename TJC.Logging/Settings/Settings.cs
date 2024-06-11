@@ -13,7 +13,7 @@ public sealed class Settings
     public static Settings Instance =>
         _instance.Value;
 
-    public Formatting Formatting { get; set; } = new();
+    public FormattingSettings Formatting { get; set; } = new();
 
     #endregion
 
