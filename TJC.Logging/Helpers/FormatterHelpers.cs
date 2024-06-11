@@ -2,9 +2,19 @@
 
 internal static class FormatterHelpers
 {
-    #region Formatter Settings
+    public static List<IFormatterSettings> GetFormatters(this FormattingSettings instance,
+                                                         bool includedOnly = false,
+                                                         bool prioritized = false)
+    {
+        var formatters = instance.GetAllFormatters();
+        if (includedOnly)
+            formatters = [.. formatters.Where(x => x.Include)];
+        if (prioritized)
+            formatters = [.. formatters.OrderBy(x => x.Priority)];
+        return formatters;
+    }
 
-    public static List<IFormatterSettings> GetFormatters(this Formatting instance)
+    public static List<IFormatterSettings> GetAllFormatters(this FormattingSettings instance)
     {
         var formatters = new List<IFormatterSettings>();
         var properties = instance.GetType().GetProperties();
@@ -13,36 +23,4 @@ internal static class FormatterHelpers
                 formatters.Add(formatter);
         return formatters;
     }
-
-    #endregion
-
-    #region Inclusions
-
-    public static void ExcludeAll(this IFormatterSettings instance)
-    {
-        var inclusions = instance.GetInclusions();
-        foreach (var inclusion in inclusions)
-        {
-            var exclude = inclusion.PropertyType.GetMethod(nameof(Inclusion.Exclude));
-            exclude?.Invoke(inclusion.GetValue(instance), null);
-        }
-    }
-
-    public static void IncludeAll(this IFormatterSettings instance)
-    {
-        var inclusions = instance.GetInclusions();
-        foreach (var inclusion in inclusions)
-        {
-            var include = inclusion.PropertyType.GetMethod(nameof(Inclusion.Include));
-            include?.Invoke(inclusion.GetValue(instance), null);
-        }
-    }
-
-    private static List<PropertyInfo> GetInclusions(this IFormatterSettings instance)
-    {
-        var properties = instance.GetType().GetProperties();
-        return properties.Where(x => x.PropertyType == typeof(Inclusion)).ToList();
-    }
-
-    #endregion
 }
