@@ -2,9 +2,20 @@
 
 public class FormattingSettings : IFormattable
 {
+    #region Constructor
+
+    public FormattingSettings()
+    {
+        Timestamp.Priority.Then(Location.Priority);
+    }
+
+    #endregion
+
     #region Properties
 
     public string Separator { get; set; } = string.Empty;
+
+    public FormatTimestampSettings Timestamp { get; set; } = new();
 
     public FormatLocationSettings Location { get; set; } = new();
 
