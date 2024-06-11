@@ -10,7 +10,7 @@ public class LocationFormatTests
         Settings.Settings.ReloadDefaults(); // Reset settings before each test
 
     [TestMethod]
-    public void IncludeTypeMemberAndLineNumber()
+    public void LogMark_IncludeAll()
     {
         // Arrange
         Settings.Settings.Instance.Formatting.ExcludeAll();
@@ -23,12 +23,12 @@ public class LocationFormatTests
         _logger.LogMark();
 
         // Assert
-        var location = string.Concat(typeof(LocationFormatTests).Namespace, nameof(LocationFormatTests), nameof(IncludeTypeMemberAndLineNumber), "23");
+        var location = string.Concat(typeof(LocationFormatTests).Namespace, nameof(LocationFormatTests), nameof(LogMark_IncludeAll), "23");
         Assert.AreEqual(location, _logger.LastMessage);
     }
 
     [TestMethod]
-    public void IncludeLineNumberOnly()
+    public void LogMark_IncludeLineNumberOnly()
     {
         // Arrange
         Settings.Settings.Instance.Formatting.ExcludeAll();
@@ -45,7 +45,24 @@ public class LocationFormatTests
     }
 
     [TestMethod]
-    public void IncludeTypeNameOnly()
+    public void LogMark_IncludeNamespaceOnly()
+    {
+        // Arrange
+        Logging.Settings.Settings.Instance.Formatting.ExcludeAll();
+        Logging.Settings.Settings.Instance.Formatting.Location.Include = true;
+        Logging.Settings.Settings.Instance.Formatting.Location.IncludeNamespace = true;
+        Logging.Settings.Settings.Instance.Formatting.Location.Prefix = string.Empty;
+        Logging.Settings.Settings.Instance.Formatting.Location.Suffix = string.Empty;
+
+        // Act
+        _logger.LogMark();
+
+        // Assert
+        Assert.AreEqual(typeof(LocationFormatTests).Namespace, _logger.LastMessage);
+    }
+
+    [TestMethod]
+    public void LogMark_IncludeTypeNameOnly()
     {
         // Arrange
         Settings.Settings.Instance.Formatting.ExcludeAll();
@@ -62,7 +79,7 @@ public class LocationFormatTests
     }
 
     [TestMethod]
-    public void IncludeMemberNameOnly()
+    public void LogMark_IncludeMemberNameOnly()
     {
         // Arrange
         Settings.Settings.Instance.Formatting.ExcludeAll();
@@ -75,7 +92,7 @@ public class LocationFormatTests
         _logger.LogMark();
 
         // Assert
-        Assert.AreEqual(nameof(IncludeMemberNameOnly), _logger.LastMessage);
+        Assert.AreEqual(nameof(LogMark_IncludeMemberNameOnly), _logger.LastMessage);
     }
 
     [TestMethod]
@@ -99,7 +116,27 @@ public class LocationFormatTests
     }
 
     [TestMethod]
-    public void IncludeNamespaceTypeAndMemberName()
+    public void LogMark_IncludeTypeAndMemberNameOnly()
+    {
+        // Arrange
+        Logging.Settings.Settings.Instance.Formatting.ExcludeAll();
+        Logging.Settings.Settings.Instance.Formatting.Location.Include = true;
+        Logging.Settings.Settings.Instance.Formatting.Location.IncludeType = true;
+        Logging.Settings.Settings.Instance.Formatting.Location.IncludeMember = true;
+        Logging.Settings.Settings.Instance.Formatting.Location.Prefix = string.Empty;
+        Logging.Settings.Settings.Instance.Formatting.Location.Suffix = string.Empty;
+        Logging.Settings.Settings.Instance.Formatting.Location.Separator = string.Empty;
+
+        // Act
+        _logger.LogMark();
+
+        // Assert
+        var location = string.Concat(nameof(LocationFormatTests), nameof(LogMark_IncludeTypeAndMemberNameOnly));
+        Assert.AreEqual(location, _logger.LastMessage);
+    }
+
+    [TestMethod]
+    public void LogMark_IncludeNamespaceTypeAndMemberOnly()
     {
         // Arrange
         Settings.Settings.Instance.Formatting.ExcludeAll();
@@ -115,7 +152,7 @@ public class LocationFormatTests
         _logger.LogMark();
 
         // Assert
-        var location = string.Concat(typeof(LocationFormatTests).Namespace, nameof(LocationFormatTests), nameof(IncludeNamespaceTypeAndMemberName));
+        var location = string.Concat(typeof(LocationFormatTests).Namespace, nameof(LocationFormatTests), nameof(LogMark_IncludeNamespaceTypeAndMemberOnly));
         Assert.AreEqual(location, _logger.LastMessage);
     }
 }
