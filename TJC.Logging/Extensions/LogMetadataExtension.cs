@@ -3,6 +3,15 @@
 // ReSharper disable ExplicitCallerInfoArgument
 internal static class LogMetadataExtension
 {
+    /// <summary>
+    /// This is the base internal method called by all other extensions to make use of the <see cref="LogState"/> &amp; <see cref="LogFormatter"/>.
+    /// </summary>
+    /// <param name="logger"></param>
+    /// <param name="message"></param>
+    /// <param name="logLevel"></param>
+    /// <param name="frameIndex"></param>
+    /// <param name="memberName"></param>
+    /// <param name="lineNumber"></param>
     internal static void LogMetadata(this ILogger logger,
                                    string message = "",
                                    LogLevel logLevel = LogLevel.Trace,
