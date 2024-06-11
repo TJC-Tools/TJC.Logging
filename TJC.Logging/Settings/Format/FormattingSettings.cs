@@ -6,7 +6,9 @@ public class FormattingSettings : IFormattable
 
     public FormattingSettings()
     {
-        Timestamp.Priority.Then(Location.Priority);
+        Timestamp.Priority.
+            Then(Specialty.Priority).
+            Then(Location.Priority);
     }
 
     #endregion
@@ -18,6 +20,8 @@ public class FormattingSettings : IFormattable
     public FormatTimestampSettings Timestamp { get; set; } = new();
 
     public FormatLocationSettings Location { get; set; } = new();
+
+    public FormatSpecialtyLogTypeSettings Specialty { get; set; } = new();
 
     #endregion
 

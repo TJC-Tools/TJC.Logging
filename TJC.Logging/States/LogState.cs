@@ -8,6 +8,7 @@
 /// <param name="lineNumber">Leave blank unless overriding with a value from an earlier frame</param>
 internal class LogState(
     int frameIndex = 0,
+    SpecialtyLogTypes specialtyLogType = SpecialtyLogTypes.None,
     [CallerMemberName] string memberName = "",
     [CallerLineNumber] int lineNumber = 0)
     : ILogState
@@ -15,6 +16,7 @@ internal class LogState(
     #region Properties
 
     public DateTime DateTime { get; } = DateTime.Now;
+    public SpecialtyLogTypes Specialty { get; } = specialtyLogType;
     public Type? CallingType { get; } = GetCallingType(frameIndex + 1);
     public string MemberName { get; } = memberName;
     public int LineNumber { get; } = lineNumber;
