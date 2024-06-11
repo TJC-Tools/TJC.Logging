@@ -20,3 +20,9 @@ ILogger.LogStep(ref step);
 ILogger.LogStep(ref step);
 // Do second step
 ```
+
+### [ILogger.LogGet<T>(T obj)](TJC.Logging/Extensions/Specialty/LogGetExtension.cs)
+> Logs the value of an object and returns the object.
+
+### [ILogger.LogSet()](TJC.Logging/Extensions/Specialty/LogSetExtension.cs)
+> Logs the before and after values of a property and set it when done.
