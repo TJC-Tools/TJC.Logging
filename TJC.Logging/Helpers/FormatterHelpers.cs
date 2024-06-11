@@ -2,9 +2,9 @@
 
 internal static class FormatterHelpers
 {
-    public static List<IFormatterSettings> GetFormatters(this FormattingSettings instance,
-                                                         bool includedOnly = false,
-                                                         bool prioritized = false)
+    public static List<IPrimaryFormatterSettings> GetFormatters(this FormattingSettings instance,
+                                                                bool includedOnly = false,
+                                                                bool prioritized = false)
     {
         var formatters = instance.GetAllFormatters();
         if (includedOnly)
@@ -14,12 +14,12 @@ internal static class FormatterHelpers
         return formatters;
     }
 
-    public static List<IFormatterSettings> GetAllFormatters(this FormattingSettings instance)
+    public static List<IPrimaryFormatterSettings> GetAllFormatters(this FormattingSettings instance)
     {
-        var formatters = new List<IFormatterSettings>();
+        var formatters = new List<IPrimaryFormatterSettings>();
         var properties = instance.GetType().GetProperties();
         foreach (var property in properties)
-            if (property.GetValue(instance) is IFormatterSettings formatter)
+            if (property.GetValue(instance) is IPrimaryFormatterSettings formatter)
                 formatters.Add(formatter);
         return formatters;
     }

@@ -13,14 +13,19 @@ internal static class LogMetadataExtension
     /// <param name="memberName"></param>
     /// <param name="lineNumber"></param>
     internal static void LogMetadata(this ILogger logger,
-                                   string message = "",
-                                   LogLevel logLevel = LogLevel.Trace,
-                                   int frameIndex = 0,
-                                   [CallerMemberName] string memberName = "",
-                                   [CallerLineNumber] int lineNumber = 0) =>
+                                     string message = "",
+                                     LogLevel logLevel = LogLevel.Trace,
+                                     int frameIndex = 0,
+                                     SpecialtyLogTypes specialtyLogType = SpecialtyLogTypes.None,
+                                     [CallerMemberName] string memberName = "",
+                                     [CallerLineNumber] int lineNumber = 0) =>
         logger.Log(logLevel: logLevel,
                    eventId: new EventId(0),
-                   state: new LogState(frameIndex + 1, memberName, lineNumber),
+                   state: new LogState(
+                       frameIndex: frameIndex + 1,
+                       specialtyLogType: specialtyLogType,
+                       memberName: memberName,
+                       lineNumber: lineNumber),
                    exception: null,
                    formatter: LogFormatter.Formatter<LogState>(message));
 }
