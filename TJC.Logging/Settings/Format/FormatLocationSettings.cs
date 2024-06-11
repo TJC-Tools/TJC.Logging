@@ -9,7 +9,7 @@ public class FormatLocationSettings(
     string prefix = "[",
     string separator = ".",
     string suffix = "]")
-    : IFormatterSettings
+    : IPrimaryFormatterSettings
 {
     #region Predefined Configurations
 

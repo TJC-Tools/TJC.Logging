@@ -1,6 +1,6 @@
 ﻿namespace TJC.Logging.Interfaces;
 
-internal interface IFormatterSettings : IFormattable
+internal interface IPrimaryFormatterSettings : IFormattable
 {
     Inclusion.Inclusion Include { get; set; }
 
