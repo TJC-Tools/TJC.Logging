@@ -10,7 +10,7 @@ public class LogGetTests
         Settings.Settings.ReloadDefaults(); // Reset logger settings before each test
 
     [TestMethod]
-    public void GetNullTest()
+    public void LogGet_IsNull()
     {
         // Arrange
         Settings.Settings.Instance.Formatting.ExcludeAll();
@@ -31,7 +31,7 @@ public class LogGetTests
     }
 
     [TestMethod]
-    public void GetIntTest()
+    public void LogGet_IntIs6()
     {
         // Arrange
         Settings.Settings.Instance.Formatting.ExcludeAll();
