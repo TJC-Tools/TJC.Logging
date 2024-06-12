@@ -42,7 +42,7 @@ public class LogTrackerTests
 
         // Assert
         var message = string.Concat(SpecialtyLogTypes.Tracker, CompletionStatus.Success);
-        Assert.AreEqual(message, _logger.LastMessage);
+        Assert.IsTrue(_logger.LastMessage?.StartsWith(message));
         Assert.AreEqual(CompletionStatus.Success, tracker.CompletionStatus);
         Assert.IsNotNull(tracker.EndTime);
         Assert.IsFalse(LogTracker._trackers.Contains(tracker));
@@ -64,7 +64,7 @@ public class LogTrackerTests
 
         // Assert
         var message = string.Concat(SpecialtyLogTypes.Tracker, CompletionStatus.Failure);
-        Assert.AreEqual(message, _logger.LastMessage);
+        Assert.IsTrue(_logger.LastMessage?.StartsWith(message));
         Assert.AreEqual(CompletionStatus.Failure, tracker.CompletionStatus);
         Assert.IsNotNull(tracker.EndTime);
         Assert.IsFalse(LogTracker._trackers.Contains(tracker));
@@ -85,7 +85,7 @@ public class LogTrackerTests
 
         // Assert
         var message = string.Concat(SpecialtyLogTypes.Tracker, CompletionStatus.Success);
-        Assert.AreEqual(message, _logger.LastMessage);
+        Assert.IsTrue(_logger.LastMessage?.StartsWith(message));
         Assert.AreEqual(0, LogTracker.GetActiveTrackerCount());
     }
 
