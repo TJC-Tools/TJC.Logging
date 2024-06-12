@@ -51,12 +51,12 @@ public static class PluralizeExtensions
         pluralize ? !string.IsNullOrEmpty(pluralized) ? pluralized :
             string.Concat(nonPluralized, 's') : nonPluralized;
 
-    public static bool IsOne(this string number) =>
+    internal static bool IsOne(this string number) =>
         double.TryParse(number, out var value) && value.IsOne();
 
-    public static bool IsOne(this double number, double eps = double.Epsilon) =>
+    internal static bool IsOne(this double number, double eps = double.Epsilon) =>
         Math.Abs(number - 1) < eps;
 
-    public static bool IsOne(this int number) =>
+    internal static bool IsOne(this int number) =>
         number == 1;
 }
