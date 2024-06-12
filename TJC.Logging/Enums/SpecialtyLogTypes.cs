@@ -4,5 +4,6 @@ internal enum SpecialtyLogTypes
 {
     None,
     Get,
-    Set
+    Set,
+    Tracker
 }
