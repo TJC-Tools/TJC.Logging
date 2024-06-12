@@ -17,6 +17,8 @@ public class FormatSpecialtyLogTypeSettings(
 
     public FormatGetSetSettings GetSet { get; set; } = new();
 
+    public FormatTrackerSettings Tracker { get; set; } = new();
+
     #endregion
 
     #region IFormattable    
@@ -26,6 +28,8 @@ public class FormatSpecialtyLogTypeSettings(
 
         if (formatProvider is not ILogState state)
             throw new NotImplementedException();
+        if (state.Specialty == SpecialtyLogTypes.None)
+            return string.Empty;
         return string.Concat(Prefix, state.Specialty, Suffix);
     }
 
