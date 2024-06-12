@@ -10,6 +10,8 @@ internal static class LogMetadataExtension
     /// <param name="message"></param>
     /// <param name="logLevel"></param>
     /// <param name="frameIndex"></param>
+    /// <param name="specialtyLogType"></param>
+    /// <param name="exception"></param>
     /// <param name="memberName"></param>
     /// <param name="lineNumber"></param>
     internal static void LogMetadata(this ILogger logger,
@@ -17,6 +19,7 @@ internal static class LogMetadataExtension
                                      LogLevel logLevel = LogLevel.Trace,
                                      int frameIndex = 0,
                                      SpecialtyLogTypes specialtyLogType = SpecialtyLogTypes.None,
+                                     Exception? exception = null,
                                      [CallerMemberName] string memberName = "",
                                      [CallerLineNumber] int lineNumber = 0) =>
         logger.Log(logLevel: logLevel,
@@ -26,6 +29,6 @@ internal static class LogMetadataExtension
                        specialtyLogType: specialtyLogType,
                        memberName: memberName,
                        lineNumber: lineNumber),
-                   exception: null,
+                   exception: exception,
                    formatter: LogFormatter.Formatter<LogState>(message));
 }
