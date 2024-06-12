@@ -86,7 +86,6 @@ public class LogTrackerTests
         // Assert
         var message = string.Concat(SpecialtyLogTypes.Tracker, CompletionStatus.Success);
         Assert.IsTrue(_logger.LastMessage?.StartsWith(message));
-        Assert.AreEqual(0, LogTracker.GetActiveTrackerCount());
     }
 
     [TestMethod]

@@ -33,10 +33,10 @@ ILogger.LogStep(ref step);
 #### [ILogger.LogEnd(LogTracker, CompletionStatus, Exception))](TJC.Logging/Extensions/Specialty/LogTrackerExtensions.cs)
 > Logs the duration & completion status of a process.
 
-#### [ILogger.LogSucceeded(LogTracker))](TJC.Logging/Extensions/Specialty/LogTrackerExtensions.cs)
+#### [ILogger.LogSuccess(LogTracker))](TJC.Logging/Extensions/Specialty/LogTrackerExtensions.cs)
 > Logs the duration & completion status of a successful process.
 
-#### [ILogger.LogFailed(LogTracker, Exception))](TJC.Logging/Extensions/Specialty/LogTrackerExtensions.cs)
+#### [ILogger.LogFail(LogTracker, Exception))](TJC.Logging/Extensions/Specialty/LogTrackerExtensions.cs)
 > Logs the duration & completion status of a failed process.
 
 ---

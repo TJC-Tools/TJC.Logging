@@ -29,10 +29,10 @@ public static class LogTrackerExtensions
                              memberName: memberName,
                              lineNumber: lineNumber);
 
-    public static void LogSucceeded(this ILogger logger,
-                                    LogTracker? tracker = null,
-                                    [CallerMemberName] string memberName = "",
-                                    [CallerLineNumber] int lineNumber = 0) =>
+    public static void LogSuccess(this ILogger logger,
+                                  LogTracker? tracker = null,
+                                  [CallerMemberName] string memberName = "",
+                                  [CallerLineNumber] int lineNumber = 0) =>
        logger.LogEndInternal(tracker: tracker,
                              completionStatus: CompletionStatus.Success,
                              exception: null,
@@ -40,11 +40,11 @@ public static class LogTrackerExtensions
                              memberName: memberName,
                              lineNumber: lineNumber);
 
-    public static void LogFailed(this ILogger logger,
-                                 LogTracker? tracker = null,
-                                 Exception? exception = null,
-                                 [CallerMemberName] string memberName = "",
-                                 [CallerLineNumber] int lineNumber = 0) =>
+    public static void LogFail(this ILogger logger,
+                               LogTracker? tracker = null,
+                               Exception? exception = null,
+                               [CallerMemberName] string memberName = "",
+                               [CallerLineNumber] int lineNumber = 0) =>
        logger.LogEndInternal(tracker: tracker,
                              completionStatus: CompletionStatus.Failure,
                              exception: exception,
