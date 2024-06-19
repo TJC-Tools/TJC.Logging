@@ -69,7 +69,7 @@ jobs:
       ###                                     Prepare to Run Tests                                     ###
       ####################################################################################################
       - name: Setup .NET [${{ matrix.dotnet-version }}]
-        uses: actions/setup-dotnet@v2
+        uses: actions/setup-dotnet@v4
         with:
           dotnet-version: ${{ matrix.dotnet-version }}
         
