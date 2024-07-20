@@ -27,16 +27,16 @@ ILogger.LogStep(ref step);
 ---
 ### Trackers
 
-#### [ILogger.LogStart())](TJC.Logging/Extensions/Specialty/LogTrackerExtensions.cs)
+#### [ILogger.LogStart()](TJC.Logging/Extensions/Specialty/LogTrackerExtensions.cs)
 > Returns a [LogTracker](TJC.Logging/Trackers/LogTracker.cs) that is used to track the duration & status of a process.
 
-#### [ILogger.LogEnd(LogTracker, CompletionStatus, Exception))](TJC.Logging/Extensions/Specialty/LogTrackerExtensions.cs)
+#### [ILogger.LogEnd(LogTracker, CompletionStatus, Exception)](TJC.Logging/Extensions/Specialty/LogTrackerExtensions.cs)
 > Logs the duration & completion status of a process.
 
-#### [ILogger.LogSuccess(LogTracker))](TJC.Logging/Extensions/Specialty/LogTrackerExtensions.cs)
+#### [ILogger.LogSuccess(LogTracker)](TJC.Logging/Extensions/Specialty/LogTrackerExtensions.cs)
 > Logs the duration & completion status of a successful process.
 
-#### [ILogger.LogFail(LogTracker, Exception))](TJC.Logging/Extensions/Specialty/LogTrackerExtensions.cs)
+#### [ILogger.LogFail(LogTracker, Exception)](TJC.Logging/Extensions/Specialty/LogTrackerExtensions.cs)
 > Logs the duration & completion status of a failed process.
 
 ---
