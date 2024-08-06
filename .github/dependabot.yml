@@ -8,7 +8,7 @@ updates:
     reviewers:
       - "${{ secrets.GHA_REVIEWER }}"
     schedule:
-      interval: weekly
+      interval: monthly
 
   - package-ecosystem: nuget
     directory: "/"
@@ -17,4 +17,4 @@ updates:
     reviewers:
       - "${{ secrets.NUGET_REVIEWER }}"
     schedule:
-      interval: weekly
+      interval: monthly
