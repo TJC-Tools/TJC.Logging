@@ -1,5 +1,15 @@
 [![NuGet Version and Downloads count](https://buildstats.info/nuget/TJC.Logging)](https://www.nuget.org/packages/TJC.Logging)
 
+## Table of Contents
+- [Format](#format)
+- [Extensions](#extensions)
+  - [Trackers](#trackers)
+  - [Get & Set](#get-&-set)
+  - [Elapsed Time](#elapsed-time)
+  - [Pluralize](#pluralize)
+
+---
+
 ## Format
 - Timestamp
 - Location (`Namespace`, `Type Name`, `Member Name`, `Line Number`)
