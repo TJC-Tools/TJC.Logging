@@ -4,7 +4,7 @@
 - [Format](#format)
 - [Extensions](#extensions)
   - [Trackers](#trackers)
-  - [Get & Set](#get-&-set)
+  - [Get & Set](#get--set)
   - [Elapsed Time](#elapsed-time)
   - [Pluralize](#pluralize)
 
