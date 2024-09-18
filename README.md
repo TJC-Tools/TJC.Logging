@@ -1,4 +1,6 @@
-[![NuGet Version and Downloads count](https://buildstats.info/nuget/TJC.Logging)](https://www.nuget.org/packages/TJC.Logging)
+![GitHub Tag](https://img.shields.io/github/v/tag/TJC-Tools/TJC.Logging) ![NuGet Version](https://img.shields.io/nuget/v/TJC.Logging)
+
+![NuGet Downloads](https://img.shields.io/nuget/dt/TJC.Logging) ![Size](https://img.shields.io/github/repo-size/TJC-Tools/TJC.Logging) ![License](https://img.shields.io/github/license/TJC-Tools/TJC.Logging.svg)
 
 ## Table of Contents
 - [Format](#format)
