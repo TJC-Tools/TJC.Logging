@@ -1,6 +1,6 @@
-![GitHub Tag](https://img.shields.io/github/v/tag/TJC-Tools/TJC.Logging) ![NuGet Version](https://img.shields.io/nuget/v/TJC.Logging)
+![GitHub Tag](https://img.shields.io/github/v/tag/TJC-Tools/TJC.Logging) [![NuGet Version](https://img.shields.io/nuget/v/TJC.Logging)](https://www.nuget.org/packages/TJC.Logging)
 
-![NuGet Downloads](https://img.shields.io/nuget/dt/TJC.Logging) ![Size](https://img.shields.io/github/repo-size/TJC-Tools/TJC.Logging) ![License](https://img.shields.io/github/license/TJC-Tools/TJC.Logging.svg)
+[![NuGet Downloads](https://img.shields.io/nuget/dt/TJC.Logging)](https://www.nuget.org/packages/TJC.Logging) ![Size](https://img.shields.io/github/repo-size/TJC-Tools/TJC.Logging) [![License](https://img.shields.io/github/license/TJC-Tools/TJC.Logging.svg)](LICENSE)
 
 ## Table of Contents
 - [Format](#format)
