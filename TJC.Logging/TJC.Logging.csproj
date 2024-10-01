@@ -36,7 +36,7 @@
     <PackageReference Include="TJC.Inclusion" Version="0.1.2" />
     <PackageReference Include="TJC.Priority" Version="0.1.1" />
     <PackageReference Include="TJC.StringExtensions" Version="0.1.0" />
-    <PackageReference Include="TJC.TimeExtensions" Version="0.1.0" />
+    <PackageReference Include="TJC.TimeExtensions" Version="0.1.5" />
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.1" />
   </ItemGroup>
   <!-- TESTS -->
