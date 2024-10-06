@@ -10,11 +10,11 @@ public static class LogExceptionExtensions
     /// <param name="logLevel"></param>
     /// <param name="memberName">Leave blank.</param>
     /// <param name="lineNumber">Leave blank.</param>
-    public static void LogException123(this ILogger              logger,
-                                       Exception                 exception,
-                                       LogLevel                  logLevel   = LogLevel.Error,
-                                       [CallerMemberName] string memberName = "",
-                                       [CallerLineNumber] int    lineNumber = 0)
+    public static void LogException(this ILogger              logger,
+                                    Exception                 exception,
+                                    LogLevel                  logLevel   = LogLevel.Error,
+                                    [CallerMemberName] string memberName = "",
+                                    [CallerLineNumber] int    lineNumber = 0)
     {
         var log = new List<string>
         {

@@ -12,9 +12,6 @@ public class LogExceptionTests
     [TestMethod]
     public void LogException_ThrowException_ABC()
     {
-        // Arrange
-        Settings.Settings.Instance.Formatting.ExcludeAll();
-
         // Act
         try
         {
@@ -25,14 +22,20 @@ public class LogExceptionTests
             _logger.LogException(exception);
         }
 
-        var result = _logger.LastMessage ?? string.Empty;
-        var result1 = result.StartsWith("System.Exception: ABC");
-        var result2 = result.Contains("at TJC.Logging.Tests.Extensions.LogExceptionTests.LogException_ThrowException_ABC() in");
-        var result3 = result.EndsWith(@"\LogExceptionTests.cs:line 21");
+        var result  = _logger.LastMessage ?? string.Empty;
+        var result1 = result.Contains($"[{nameof(LogExceptionTests)}.{nameof(LogException_ThrowException_ABC)}]");
+        var result2 = result.Contains("Type: System.Exception");
+        var result3 = result.Contains("Message: ABC");
+        var result4 = result.Contains("Source: TJC.Logging.Tests");
+        var result5 = result.Contains($"StackTrace: at TJC.Logging.Tests.Extensions.{nameof(LogExceptionTests)}.{nameof(LogException_ThrowException_ABC)}() in");
+        var result6 = result.Contains($@"\{nameof(LogExceptionTests)}.cs:line");
 
         // Assert
-        Assert.IsTrue(result1);
-        Assert.IsTrue(result2);
-        Assert.IsTrue(result3);
+        Assert.IsTrue(result1, "Calling class & method missing");
+        Assert.IsTrue(result2, "Exception type missing");
+        Assert.IsTrue(result3, "Message missing");
+        Assert.IsTrue(result4, "Source missing");
+        Assert.IsTrue(result5, "StackTrace missing");
+        Assert.IsTrue(result6, "Line missing");
     }
 }
