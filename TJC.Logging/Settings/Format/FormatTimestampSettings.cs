@@ -8,7 +8,7 @@ public class FormatTimestampSettings(
 
     public Priority.Priority Priority { get; set; } = new();
 
-    public string Format { get; set; } = "yyyy-MM-ddTHH:mm:ss";
+    public string Format { get; set; } = "yyyy-MM-ddTHH:mm:ss.fff";
 
     public string ToString(string? format, IFormatProvider? formatProvider)
     {
