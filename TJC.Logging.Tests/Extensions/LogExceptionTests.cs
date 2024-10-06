@@ -78,4 +78,28 @@ public class LogExceptionTests
         // Assert
         Assert.IsTrue(result1, "Inner exception missing");
     }
+
+    [TestMethod]
+    public void LogException_ThrowException_WithStackTrace()
+    {
+        // Act
+        try
+        {
+            MockExceptionThrower.CallMethodToThrowException("ABC");
+        }
+        catch (Exception exception)
+        {
+            _logger.LogException(exception);
+        }
+
+        var result  = _logger.LastMessage ?? string.Empty;
+        var result1 = result.Contains($"\r\n\t\tat TJC.Logging.Tests.Mocks.{nameof(MockExceptionThrower)}.{nameof(MockExceptionThrower.ThrowException)}(String message) in");
+        var result2 = result.Contains($"\r\n\t\tat TJC.Logging.Tests.Mocks.{nameof(MockExceptionThrower)}.{nameof(MockExceptionThrower.CallMethodToThrowException)}(String message) in");
+        var result3 = result.Contains($"\r\n\t\tat TJC.Logging.Tests.Extensions.{nameof(LogExceptionTests)}.{nameof(LogException_ThrowException_WithStackTrace)}() in");
+
+        // Assert
+        Assert.IsTrue(result1, "Stack trace new-lines with tabs not matching expected");
+        Assert.IsTrue(result2, "Stack trace new-lines with tabs not matching expected");
+        Assert.IsTrue(result3, "Stack trace new-lines with tabs not matching expected");
+    }
 }
