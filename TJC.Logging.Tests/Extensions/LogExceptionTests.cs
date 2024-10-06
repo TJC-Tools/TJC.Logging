@@ -38,4 +38,44 @@ public class LogExceptionTests
         Assert.IsTrue(result5, "Stack Trace missing");
         Assert.IsTrue(result6, "Line missing");
     }
+
+    [TestMethod]
+    public void LogException_ThrowException_WithoutInnerException()
+    {
+        // Act
+        try
+        {
+            MockExceptionThrower.CallMethodToThrowException("ABC");
+        }
+        catch (Exception exception)
+        {
+            _logger.LogException(exception);
+        }
+
+        var result  = _logger.LastMessage ?? string.Empty;
+        var result1 = result.Contains("Inner Exception:");
+
+        // Assert
+        Assert.IsFalse(result1, "Inner exception present when it shouldn't be");
+    }
+
+    [TestMethod]
+    public void LogException_ThrowException_WithInnerException()
+    {
+        // Act
+        try
+        {
+            MockExceptionThrower.CallMethodToThrowExceptionWithInnerException("ABC", "DEF");
+        }
+        catch (Exception exception)
+        {
+            _logger.LogException(exception);
+        }
+
+        var result  = _logger.LastMessage ?? string.Empty;
+        var result1 = result.Contains("Inner Exception: System.Exception: DEF");
+
+        // Assert
+        Assert.IsTrue(result1, "Inner exception missing");
+    }
 }
