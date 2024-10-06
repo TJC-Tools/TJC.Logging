@@ -27,7 +27,7 @@ public class LogExceptionTests
         var result2 = result.Contains("Type: System.Exception");
         var result3 = result.Contains("Message: ABC");
         var result4 = result.Contains("Source: TJC.Logging.Tests");
-        var result5 = result.Contains($"StackTrace: at TJC.Logging.Tests.Extensions.{nameof(LogExceptionTests)}.{nameof(LogException_ThrowException_ABC)}() in");
+        var result5 = result.Contains($"Stack Trace: at TJC.Logging.Tests.Extensions.{nameof(LogExceptionTests)}.{nameof(LogException_ThrowException_ABC)}() in");
         var result6 = result.Contains($@"\{nameof(LogExceptionTests)}.cs:line");
 
         // Assert
@@ -35,7 +35,7 @@ public class LogExceptionTests
         Assert.IsTrue(result2, "Exception type missing");
         Assert.IsTrue(result3, "Message missing");
         Assert.IsTrue(result4, "Source missing");
-        Assert.IsTrue(result5, "StackTrace missing");
+        Assert.IsTrue(result5, "Stack Trace missing");
         Assert.IsTrue(result6, "Line missing");
     }
 }
