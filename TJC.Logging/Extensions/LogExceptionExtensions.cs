@@ -16,16 +16,20 @@ public static class LogExceptionExtensions
                                     [CallerMemberName] string memberName = "",
                                     [CallerLineNumber] int    lineNumber = 0)
     {
+        // Create message
         var log = new List<string>
         {
             $"Type: {exception.GetType().FullName}",
             $"Message: {exception.Message}",
             $"Source: {exception.Source}",
-            $"StackTrace: {exception.StackTrace?.Trim()}",
-            $"InnerException: {exception.InnerException}"
+            $"StackTrace: {exception.StackTrace?.Trim()}"
         };
+        if (exception.InnerException is not null)
+            log.Add($"InnerException: {exception.InnerException}");
         var separator = $"{Environment.NewLine}\t";
         var message   = $"{separator}{string.Join(separator, log)}";
+
+        // Log the message with metadata
         logger.LogMetadata(message,
                            logLevel,
                            frameIndex: 1,
