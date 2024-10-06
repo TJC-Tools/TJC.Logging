@@ -57,8 +57,8 @@ public static class LogTrackerExtensions
                                        CompletionStatus completionStatus = CompletionStatus.Success,
                                        Exception? exception = null,
                                        int frameIndex = 0,
-                                       [CallerMemberName] string memberName = "",
-                                       [CallerLineNumber] int lineNumber = 0)
+                                       string memberName = "",
+                                       int lineNumber = 0)
     {
         if (completionStatus == CompletionStatus.Started)
             throw new ArgumentException($"{nameof(CompletionStatus)} cannot be [{completionStatus}]", nameof(completionStatus));

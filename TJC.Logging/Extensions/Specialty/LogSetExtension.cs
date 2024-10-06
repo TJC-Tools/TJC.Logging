@@ -11,6 +11,7 @@ public static class LogSetExtension
     /// <typeparam name="T"></typeparam>
     /// <param name="logger"></param>
     /// <param name="obj"></param>
+    /// <param name="value"></param>
     /// <param name="argumentName"></param>
     /// <param name="memberName"></param>
     /// <param name="lineNumber"></param>

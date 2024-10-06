@@ -9,8 +9,8 @@
 internal class LogState(
     int frameIndex = 0,
     SpecialtyLogTypes specialtyLogType = SpecialtyLogTypes.None,
-    [CallerMemberName] string memberName = "",
-    [CallerLineNumber] int lineNumber = 0)
+    string memberName = "",
+    int lineNumber = 0)
     : ILogState
 {
     #region Properties
