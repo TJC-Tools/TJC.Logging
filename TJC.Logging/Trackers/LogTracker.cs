@@ -4,7 +4,7 @@ public class LogTracker : IFormatProvider
 {
     #region Static
 
-    internal readonly static List<LogTracker> _trackers = [];
+    internal static List<LogTracker> Trackers = [];
 
     #endregion
 
@@ -12,7 +12,7 @@ public class LogTracker : IFormatProvider
 
     public LogTracker()
     {
-        _trackers.Add(this);
+        Trackers.Add(this);
         StartTime = DateTime.Now;
         CompletionStatus = CompletionStatus.Started;
     }
@@ -35,7 +35,7 @@ public class LogTracker : IFormatProvider
     {
         CompletionStatus = completionStatus;
         EndTime = DateTime.Now;
-        _trackers.Remove(this);
+        Trackers.Remove(this);
     }
 
     public TimeSpan? GetDuration() =>
@@ -49,7 +49,7 @@ public class LogTracker : IFormatProvider
     #region Static  
 
     public static int GetActiveTrackerCount() =>
-        _trackers.Count;
+        Trackers.Count;
 
     #endregion
 

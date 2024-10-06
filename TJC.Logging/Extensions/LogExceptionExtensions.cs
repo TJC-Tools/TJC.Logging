@@ -22,10 +22,10 @@ public static class LogExceptionExtensions
             $"Type: {exception.GetType().FullName}",
             $"Message: {exception.Message}",
             $"Source: {exception.Source}",
-            $"StackTrace: {exception.StackTrace?.Trim()}"
+            $"Stack Trace: {FormatStackTrace(exception)}"
         };
         if (exception.InnerException is not null)
-            log.Add($"InnerException: {exception.InnerException}");
+            log.Add($"Inner Exception: {exception.InnerException}");
         var separator = $"{Environment.NewLine}\t";
         var message   = $"{separator}{string.Join(separator, log)}";
 
@@ -35,5 +35,23 @@ public static class LogExceptionExtensions
                            frameIndex: 1,
                            memberName: memberName,
                            lineNumber: lineNumber);
+    }
+
+    private static string FormatStackTrace(Exception exception)
+    {
+        // Get the stack trace and trim it
+        var stackTrace = exception.StackTrace ?? string.Empty;
+        stackTrace = stackTrace.Trim();
+
+        // Replace all new lines with the new line and two tabs (since the whole message is indented)
+        var stackTraceNewLine = $"{Environment.NewLine}\t\t";
+        stackTrace = stackTrace.Replace($"{Environment.NewLine}   ", stackTraceNewLine);
+
+        // If the stack trace contains multiple lines, add a new line at the beginning
+        if(stackTrace.Contains(Environment.NewLine))
+            stackTrace = stackTrace.Insert(0, stackTraceNewLine);
+
+        // Return the formatted stack trace
+        return stackTrace;
     }
 }
