@@ -8,8 +8,16 @@ public static class LogMessageExtension
     /// <param name="logger"></param>
     /// <param name="message"></param>
     /// <param name="logLevel"></param>
-    public static void LogMessage(this ILogger logger, string message, LogLevel logLevel = LogLevel.Debug) =>
+    /// <param name="memberName">Leave blank.</param>
+    /// <param name="lineNumber">Leave blank.</param>
+    public static void LogMessage(this ILogger              logger,
+                                  string                    message,
+                                  LogLevel                  logLevel   = LogLevel.Debug,
+                                  [CallerMemberName] string memberName = "",
+                                  [CallerLineNumber] int    lineNumber = 0) =>
         logger.LogMetadata(message,
                            logLevel,
-                           frameIndex: 1);
+                           frameIndex: 1,
+                           memberName: memberName,
+                           lineNumber: lineNumber);
 }
