@@ -5,8 +5,6 @@ public class FormatTrackerSettings(
     string prefix = "[",
     string suffix = "]",
     string separator = " ",
-    string started = "Started",
-    string completed = "Completed",
     bool useLongUnits = false,
     bool nanoSecondsNoDecimals = true)
     : IFormattable
@@ -20,10 +18,6 @@ public class FormatTrackerSettings(
     public string Prefix { get; set; } = prefix;
 
     public string Suffix { get; set; } = suffix;
-
-    public string Started { get; set; } = started;
-
-    public string Completed { get; set; } = completed;
 
     public bool UseLongUnits { get; set; } = useLongUnits;
 
@@ -42,7 +36,7 @@ public class FormatTrackerSettings(
         var duration = tracker.GetDuration();
         if (tracker.CompletionStatus == CompletionStatus.Started || duration == null)
             return result;
-        var durationString = duration?.GetElapsedTime(SignificantFigures, UseLongUnits, NanoSecondsNoDecimals);
+        var durationString = duration.Value.GetElapsedTime(SignificantFigures, UseLongUnits, NanoSecondsNoDecimals);
         return string.Concat(result, Separator, Prefix, durationString, Suffix);
     }
 
