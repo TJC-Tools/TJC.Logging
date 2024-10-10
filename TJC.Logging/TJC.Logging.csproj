@@ -33,7 +33,7 @@
   </ItemGroup>
   <!-- DEPENDENCIES -->
   <ItemGroup>
-    <PackageReference Include="TJC.Inclusion" Version="0.1.7" />
+    <PackageReference Include="TJC.Inclusion" Version="0.2.0" />
     <PackageReference Include="TJC.Priority" Version="0.1.1" />
     <PackageReference Include="TJC.StringExtensions" Version="0.1.10" />
     <PackageReference Include="TJC.TimeExtensions" Version="0.1.6" />
