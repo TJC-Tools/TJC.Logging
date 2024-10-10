@@ -5,8 +5,10 @@ updates:
     directory: "/"
     commit-message:
       prefix: "(dependabot)"
+    assignees:
+      - "TylerCarrol"
     reviewers:
-      - "${{ secrets.GHA_REVIEWER }}"
+      - "TylerCarrol"
     schedule:
       interval: monthly
 
@@ -14,7 +16,9 @@ updates:
     directory: "/"
     commit-message:
       prefix: "(dependabot)"
+    assignees:
+      - "TylerCarrol"
     reviewers:
-      - "${{ secrets.NUGET_REVIEWER }}"
+      - "TylerCarrol"
     schedule:
       interval: monthly
