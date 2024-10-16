@@ -10,6 +10,7 @@
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>  
     <RepositoryUrl>https://github.com/TJC-Tools/TJC.Logging</RepositoryUrl>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>  
   <!-- INCLUDED FILES -->
   <ItemGroup>
