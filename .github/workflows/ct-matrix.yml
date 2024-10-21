@@ -46,7 +46,7 @@ jobs:
       # Skip: README, LICENSE, .gitignore, GitHub Workflows & Actions, etc.
       - name: Check for Changes to Determine if Tests can be Skipped
         id: getChanges
-        uses: tj-actions/changed-files@v45.0.2
+        uses: tj-actions/changed-files@v45.0.3
         with:
           files_ignore: |
             README.md
@@ -86,6 +86,7 @@ jobs:
       ####################################################################################################
       ###                                          Run Tests                                           ###
       ####################################################################################################
+      # Test 1 - Build Solution
       - name: Build
         if: ${{ !fromJSON(steps.getCanSkip.outputs.result) }}
         run: dotnet build --no-restore
@@ -97,16 +98,28 @@ jobs:
           message: '[Error] Build Failed for ${{ matrix.solution }}'
       
       # Test 2 - Run All Unit Tests within Project
-      # Note: This Action Requires Windows
       - name: Run Tests for [${{ matrix.solution }}]
         if: ${{ !fromJSON(steps.getCanSkip.outputs.result) }}
-        run: dotnet test --no-build --verbosity normal
+        run: dotnet test --no-build --verbosity normal --collect "XPlat Code Coverage"
 
       - name: Error - Tests Failed for ${{ matrix.solution }}
         if: failure()
         uses: ./.github/actions/tools/annotation/error
         with:
           message: '[Error] Tests Failed for ${{ matrix.solution }}'
+
+      ####################################################################################################
+      ###                                        Code Coverage                                         ###
+      ####################################################################################################
+      - name: Upload Results to Codecov (Optional)
+        if: ${{ !fromJSON(steps.getCanSkip.outputs.result) }}
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: '**/TestResults/**/coverage.cobertura.xml'
+          flags: unittests
+          fail_ci_if_error: true
+          verbose: true
 
       ####################################################################################################
       ###                                        Notify Success                                        ###
