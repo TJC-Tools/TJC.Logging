@@ -5,6 +5,7 @@
 [![codecov](https://codecov.io/gh/TJC-Tools/TJC.Logging/graph/badge.svg?token=7DMUOKS28E)](https://codecov.io/gh/TJC-Tools/TJC.Logging)
 
 ---
+
 ## Table of Contents
 - [Format](#format)
 - [Extensions](#extensions)
