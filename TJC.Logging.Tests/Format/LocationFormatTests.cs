@@ -26,7 +26,7 @@ public class LocationFormatTests
             typeof(LocationFormatTests).Namespace,
             nameof(LocationFormatTests),
             nameof(LogMark_IncludeAll),
-            "23"
+            "22"
         );
         Assert.AreEqual(location, _logger.LastMessage);
     }
@@ -45,18 +45,18 @@ public class LocationFormatTests
         _logger.LogMark();
 
         // Assert
-        Assert.AreEqual("41", _logger.LastMessage);
+        Assert.AreEqual("45", _logger.LastMessage);
     }
 
     [TestMethod]
     public void LogMark_IncludeNamespaceOnly()
     {
         // Arrange
-        Logging.Settings.Settings.Instance.Formatting.ExcludeAll();
-        Logging.Settings.Settings.Instance.Formatting.Location.Include = true;
-        Logging.Settings.Settings.Instance.Formatting.Location.IncludeNamespace = true;
-        Logging.Settings.Settings.Instance.Formatting.Location.Prefix = string.Empty;
-        Logging.Settings.Settings.Instance.Formatting.Location.Suffix = string.Empty;
+        Settings.Settings.Instance.Formatting.ExcludeAll();
+        Settings.Settings.Instance.Formatting.Location.Include = true;
+        Settings.Settings.Instance.Formatting.Location.IncludeNamespace = true;
+        Settings.Settings.Instance.Formatting.Location.Prefix = string.Empty;
+        Settings.Settings.Instance.Formatting.Location.Suffix = string.Empty;
 
         // Act
         _logger.LogMark();
@@ -123,13 +123,13 @@ public class LocationFormatTests
     public void LogMark_IncludeTypeAndMemberNameOnly()
     {
         // Arrange
-        Logging.Settings.Settings.Instance.Formatting.ExcludeAll();
-        Logging.Settings.Settings.Instance.Formatting.Location.Include = true;
-        Logging.Settings.Settings.Instance.Formatting.Location.IncludeType = true;
-        Logging.Settings.Settings.Instance.Formatting.Location.IncludeMember = true;
-        Logging.Settings.Settings.Instance.Formatting.Location.Prefix = string.Empty;
-        Logging.Settings.Settings.Instance.Formatting.Location.Suffix = string.Empty;
-        Logging.Settings.Settings.Instance.Formatting.Location.Separator = string.Empty;
+        Settings.Settings.Instance.Formatting.ExcludeAll();
+        Settings.Settings.Instance.Formatting.Location.Include = true;
+        Settings.Settings.Instance.Formatting.Location.IncludeType = true;
+        Settings.Settings.Instance.Formatting.Location.IncludeMember = true;
+        Settings.Settings.Instance.Formatting.Location.Prefix = string.Empty;
+        Settings.Settings.Instance.Formatting.Location.Suffix = string.Empty;
+        Settings.Settings.Instance.Formatting.Location.Separator = string.Empty;
 
         // Act
         _logger.LogMark();
