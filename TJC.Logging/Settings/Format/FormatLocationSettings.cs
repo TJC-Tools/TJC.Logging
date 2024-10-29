@@ -8,8 +8,8 @@ public class FormatLocationSettings(
     bool includeLineNumber = false,
     string prefix = "[",
     string separator = ".",
-    string suffix = "]")
-    : IPrimaryFormatterSettings
+    string suffix = "]"
+) : IPrimaryFormatterSettings
 {
     #region Predefined Configurations
 

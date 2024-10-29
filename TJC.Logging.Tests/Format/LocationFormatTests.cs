@@ -6,8 +6,7 @@ public class LocationFormatTests
     private readonly MockTraceLogger _logger = new();
 
     [TestInitialize]
-    public void Initialize() =>
-        Settings.Settings.ReloadDefaults(); // Reset settings before each test
+    public void Initialize() => Settings.Settings.ReloadDefaults(); // Reset settings before each test
 
     [TestMethod]
     public void LogMark_IncludeAll()
@@ -23,7 +22,12 @@ public class LocationFormatTests
         _logger.LogMark();
 
         // Assert
-        var location = string.Concat(typeof(LocationFormatTests).Namespace, nameof(LocationFormatTests), nameof(LogMark_IncludeAll), "23");
+        var location = string.Concat(
+            typeof(LocationFormatTests).Namespace,
+            nameof(LocationFormatTests),
+            nameof(LogMark_IncludeAll),
+            "23"
+        );
         Assert.AreEqual(location, _logger.LastMessage);
     }
 
@@ -131,7 +135,10 @@ public class LocationFormatTests
         _logger.LogMark();
 
         // Assert
-        var location = string.Concat(nameof(LocationFormatTests), nameof(LogMark_IncludeTypeAndMemberNameOnly));
+        var location = string.Concat(
+            nameof(LocationFormatTests),
+            nameof(LogMark_IncludeTypeAndMemberNameOnly)
+        );
         Assert.AreEqual(location, _logger.LastMessage);
     }
 
@@ -152,7 +159,11 @@ public class LocationFormatTests
         _logger.LogMark();
 
         // Assert
-        var location = string.Concat(typeof(LocationFormatTests).Namespace, nameof(LocationFormatTests), nameof(LogMark_IncludeNamespaceTypeAndMemberOnly));
+        var location = string.Concat(
+            typeof(LocationFormatTests).Namespace,
+            nameof(LocationFormatTests),
+            nameof(LogMark_IncludeNamespaceTypeAndMemberOnly)
+        );
         Assert.AreEqual(location, _logger.LastMessage);
     }
 }

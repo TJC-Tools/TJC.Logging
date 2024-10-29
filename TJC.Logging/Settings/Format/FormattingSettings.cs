@@ -6,9 +6,7 @@ public class FormattingSettings : IFormattable
 
     public FormattingSettings()
     {
-        Timestamp.Priority.
-            Then(Specialty.Priority).
-            Then(Location.Priority);
+        Timestamp.Priority.Then(Specialty.Priority).Then(Location.Priority);
     }
 
     #endregion
@@ -41,8 +39,7 @@ public class FormattingSettings : IFormattable
 
     #region IFormattable
 
-    public override string ToString() =>
-        ToString(null, null);
+    public override string ToString() => ToString(null, null);
 
     public string ToString(string? format, IFormatProvider? formatProvider)
     {

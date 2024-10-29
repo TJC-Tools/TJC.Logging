@@ -38,18 +38,13 @@ public class LogTracker : IFormatProvider
         Trackers.Remove(this);
     }
 
-    public TimeSpan? GetDuration() =>
-        EndTime.HasValue ?
-            EndTime.Value - StartTime :
-            null;
+    public TimeSpan? GetDuration() => EndTime.HasValue ? EndTime.Value - StartTime : null;
 
-    public object? GetFormat(Type? formatType) =>
-        this;
+    public object? GetFormat(Type? formatType) => this;
 
-    #region Static  
+    #region Static
 
-    public static int GetActiveTrackerCount() =>
-        Trackers.Count;
+    public static int GetActiveTrackerCount() => Trackers.Count;
 
     #endregion
 

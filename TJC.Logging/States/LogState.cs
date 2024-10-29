@@ -10,8 +10,8 @@ internal class LogState(
     int frameIndex = 0,
     SpecialtyLogTypes specialtyLogType = SpecialtyLogTypes.None,
     string memberName = "",
-    int lineNumber = 0)
-    : ILogState
+    int lineNumber = 0
+) : ILogState
 {
     #region Properties
 
@@ -38,8 +38,7 @@ internal class LogState(
 
     #region IFormattable
 
-    public override string ToString() =>
-        ToString(null, null);
+    public override string ToString() => ToString(null, null);
 
     public string ToString(string? format, IFormatProvider? formatProvider) =>
         Settings.Settings.Instance.Formatting.ToString(format, this);

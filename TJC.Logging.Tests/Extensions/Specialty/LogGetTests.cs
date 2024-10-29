@@ -6,8 +6,7 @@ public class LogGetTests
     private readonly MockTraceLogger _logger = new();
 
     [TestInitialize]
-    public void Initialize() =>
-        Settings.Settings.ReloadDefaults(); // Reset logger settings before each test
+    public void Initialize() => Settings.Settings.ReloadDefaults(); // Reset logger settings before each test
 
     [TestMethod]
     public void LogGet_IsNull()
@@ -49,7 +48,11 @@ public class LogGetTests
 
         // Assert
         Assert.AreEqual(value1, value2);
-        var expected = string.Concat(nameof(SpecialtyLogTypes.Get), nameof(value1), value1.ToString());
+        var expected = string.Concat(
+            nameof(SpecialtyLogTypes.Get),
+            nameof(value1),
+            value1.ToString()
+        );
         Assert.AreEqual(expected, _logger.LastMessage);
     }
 }

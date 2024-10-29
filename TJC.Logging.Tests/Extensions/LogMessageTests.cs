@@ -6,8 +6,7 @@ public class LogMessageTests
     private readonly MockTraceLogger _logger = new();
 
     [TestInitialize]
-    public void Initialize() =>
-        Settings.Settings.ReloadDefaults(); // Reset settings before each test
+    public void Initialize() => Settings.Settings.ReloadDefaults(); // Reset settings before each test
 
     [TestMethod]
     public void LogMessage_ABC()

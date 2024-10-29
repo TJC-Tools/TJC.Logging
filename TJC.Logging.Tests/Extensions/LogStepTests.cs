@@ -6,8 +6,7 @@ public class LogStepTests
     private readonly MockTraceLogger _logger = new();
 
     [TestInitialize]
-    public void Initialize() =>
-        Settings.Settings.ReloadDefaults(); // Reset settings before each test
+    public void Initialize() => Settings.Settings.ReloadDefaults(); // Reset settings before each test
 
     [TestMethod]
     public void LogStep_MultipleCall_Increments()

@@ -2,9 +2,11 @@
 
 internal static class FormatterHelpers
 {
-    public static List<IPrimaryFormatterSettings> GetFormatters(this FormattingSettings instance,
-                                                                bool includedOnly = false,
-                                                                bool prioritized = false)
+    public static List<IPrimaryFormatterSettings> GetFormatters(
+        this FormattingSettings instance,
+        bool includedOnly = false,
+        bool prioritized = false
+    )
     {
         var formatters = instance.GetAllFormatters();
         if (includedOnly)

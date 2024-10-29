@@ -1,6 +1,6 @@
-global using Microsoft.Extensions.Logging;
 global using System.Diagnostics;
 global using System.Runtime.CompilerServices;
+global using Microsoft.Extensions.Logging;
 global using TJC.Inclusion.Extensions;
 global using TJC.Inclusion.Interfaces;
 global using TJC.Logging.Enums;

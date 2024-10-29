@@ -9,7 +9,8 @@ public class FormatGetSetSettings(
     string nullSuffix = "",
     string from = " from ",
     string to = " to ",
-    string nullName = "null")
+    string nullName = "null"
+)
 {
     #region Properties
 
@@ -35,21 +36,30 @@ public class FormatGetSetSettings(
 
     #region Methods
 
-    internal string ToGetString<T>(T? obj,
-                                   [CallerArgumentExpression(nameof(obj))]
-                                   string argumentName = "") =>
-        string.Concat(ArgumentPrefix, argumentName, ArgumentSuffix, ToStringOrNull(obj));
+    internal string ToGetString<T>(
+        T? obj,
+        [CallerArgumentExpression(nameof(obj))] string argumentName = ""
+    ) => string.Concat(ArgumentPrefix, argumentName, ArgumentSuffix, ToStringOrNull(obj));
 
-    internal string ToSetString<T>(T? obj,
-                                   T? value,
-                                   [CallerArgumentExpression(nameof(obj))]
-                                   string argumentName = "") =>
-        string.Concat(ArgumentPrefix, argumentName, ArgumentSuffix, From, ToStringOrNull(obj), To, ToStringOrNull(value));
+    internal string ToSetString<T>(
+        T? obj,
+        T? value,
+        [CallerArgumentExpression(nameof(obj))] string argumentName = ""
+    ) =>
+        string.Concat(
+            ArgumentPrefix,
+            argumentName,
+            ArgumentSuffix,
+            From,
+            ToStringOrNull(obj),
+            To,
+            ToStringOrNull(value)
+        );
 
     private string ToStringOrNull(object? obj) =>
-        obj == null ?
-            string.Concat(NullPrefix, Null, NullSuffix) :
-            string.Concat(ValuePrefix, obj, ValueSuffix);
+        obj == null
+            ? string.Concat(NullPrefix, Null, NullSuffix)
+            : string.Concat(ValuePrefix, obj, ValueSuffix);
 
     #endregion
 }

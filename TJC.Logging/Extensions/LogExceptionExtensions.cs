@@ -10,11 +10,13 @@ public static class LogExceptionExtensions
     /// <param name="logLevel"></param>
     /// <param name="memberName">Leave blank.</param>
     /// <param name="lineNumber">Leave blank.</param>
-    public static void LogException(this ILogger              logger,
-                                    Exception                 exception,
-                                    LogLevel                  logLevel   = LogLevel.Error,
-                                    [CallerMemberName] string memberName = "",
-                                    [CallerLineNumber] int    lineNumber = 0)
+    public static void LogException(
+        this ILogger logger,
+        Exception exception,
+        LogLevel logLevel = LogLevel.Error,
+        [CallerMemberName] string memberName = "",
+        [CallerLineNumber] int lineNumber = 0
+    )
     {
         // Create message
         var log = new List<string>
@@ -22,19 +24,21 @@ public static class LogExceptionExtensions
             $"Type: {exception.GetType().FullName}",
             $"Message: {exception.Message}",
             $"Source: {exception.Source}",
-            $"Stack Trace: {FormatStackTrace(exception)}"
+            $"Stack Trace: {FormatStackTrace(exception)}",
         };
         if (exception.InnerException is not null)
             log.Add($"Inner Exception: {exception.InnerException}");
         var separator = $"{Environment.NewLine}\t";
-        var message   = $"{separator}{string.Join(separator, log)}";
+        var message = $"{separator}{string.Join(separator, log)}";
 
         // Log the message with metadata
-        logger.LogMetadata(message,
-                           logLevel,
-                           frameIndex: 1,
-                           memberName: memberName,
-                           lineNumber: lineNumber);
+        logger.LogMetadata(
+            message,
+            logLevel,
+            frameIndex: 1,
+            memberName: memberName,
+            lineNumber: lineNumber
+        );
     }
 
     private static string FormatStackTrace(Exception exception)
@@ -48,7 +52,7 @@ public static class LogExceptionExtensions
         stackTrace = stackTrace.Replace($"{Environment.NewLine}   ", stackTraceNewLine);
 
         // If the stack trace contains multiple lines, add a new line at the beginning
-        if(stackTrace.Contains(Environment.NewLine))
+        if (stackTrace.Contains(Environment.NewLine))
             stackTrace = stackTrace.Insert(0, stackTraceNewLine);
 
         // Return the formatted stack trace

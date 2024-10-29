@@ -6,5 +6,5 @@ public enum CompletionStatus
     Failure,
     Warning,
     Started,
-    Unknown
+    Unknown,
 }

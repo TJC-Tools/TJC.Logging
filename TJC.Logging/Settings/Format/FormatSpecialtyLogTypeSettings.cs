@@ -3,8 +3,8 @@
 public class FormatSpecialtyLogTypeSettings(
     bool include = true,
     string prefix = "[",
-    string suffix = "]")
-    : IPrimaryFormatterSettings
+    string suffix = "]"
+) : IPrimaryFormatterSettings
 {
     #region Properties
 
@@ -21,11 +21,10 @@ public class FormatSpecialtyLogTypeSettings(
 
     #endregion
 
-    #region IFormattable    
+    #region IFormattable
 
     public string ToString(string? format, IFormatProvider? formatProvider)
     {
-
         if (formatProvider is not ILogState state)
             throw new NotImplementedException();
         if (state.Specialty == SpecialtyLogTypes.None)

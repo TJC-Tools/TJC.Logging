@@ -10,8 +10,7 @@ public sealed class Settings
 
     #region Properties
 
-    public static Settings Instance =>
-        _instance.Value;
+    public static Settings Instance => _instance.Value;
 
     public FormattingSettings Formatting { get; set; } = new();
 
@@ -19,8 +18,7 @@ public sealed class Settings
 
     #region Methods
 
-    public static void ReloadDefaults() =>
-        _instance = new Lazy<Settings>();
+    public static void ReloadDefaults() => _instance = new Lazy<Settings>();
 
     #endregion
 }
