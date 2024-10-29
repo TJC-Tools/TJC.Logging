@@ -1,5 +1,5 @@
-global using Microsoft.Extensions.Logging;
 global using System.Diagnostics;
+global using Microsoft.Extensions.Logging;
 global using TJC.Inclusion.Extensions;
 global using TJC.Logging.Enums;
 global using TJC.Logging.Extensions;

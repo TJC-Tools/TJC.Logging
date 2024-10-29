@@ -6,8 +6,7 @@ public class LogSetTests
     private readonly MockTraceLogger _logger = new();
 
     [TestInitialize]
-    public void Initialize() =>
-        Settings.Settings.ReloadDefaults(); // Reset logger settings before each test
+    public void Initialize() => Settings.Settings.ReloadDefaults(); // Reset logger settings before each test
 
     [TestMethod]
     public void LogSet_IntFrom7To8()
@@ -30,7 +29,14 @@ public class LogSetTests
 
         // Assert
         Assert.AreEqual(after, num);
-        var expected = string.Concat(nameof(SpecialtyLogTypes.Set), nameof(num), " from ", before.ToString(), " to ", after.ToString());
+        var expected = string.Concat(
+            nameof(SpecialtyLogTypes.Set),
+            nameof(num),
+            " from ",
+            before.ToString(),
+            " to ",
+            after.ToString()
+        );
         Assert.AreEqual(expected, _logger.LastMessage);
     }
 }

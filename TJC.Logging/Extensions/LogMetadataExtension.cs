@@ -13,20 +13,26 @@ internal static class LogMetadataExtension
     /// <param name="exception"></param>
     /// <param name="memberName"></param>
     /// <param name="lineNumber"></param>
-    internal static void LogMetadata(this ILogger      logger,
-                                     string            message          = "",
-                                     LogLevel          logLevel         = LogLevel.Trace,
-                                     int               frameIndex       = 0,
-                                     SpecialtyLogTypes specialtyLogType = SpecialtyLogTypes.None,
-                                     Exception?        exception        = null,
-                                     string            memberName       = "",
-                                     int               lineNumber       = 0) =>
-        logger.Log(logLevel: logLevel,
-                   eventId: new EventId(0),
-                   state: new LogState(frameIndex: frameIndex + 1,
-                                       specialtyLogType: specialtyLogType,
-                                       memberName: memberName,
-                                       lineNumber: lineNumber),
-                   exception: exception,
-                   formatter: LogFormatter.Formatter<LogState>(message));
+    internal static void LogMetadata(
+        this ILogger logger,
+        string message = "",
+        LogLevel logLevel = LogLevel.Trace,
+        int frameIndex = 0,
+        SpecialtyLogTypes specialtyLogType = SpecialtyLogTypes.None,
+        Exception? exception = null,
+        string memberName = "",
+        int lineNumber = 0
+    ) =>
+        logger.Log(
+            logLevel: logLevel,
+            eventId: new EventId(0),
+            state: new LogState(
+                frameIndex: frameIndex + 1,
+                specialtyLogType: specialtyLogType,
+                memberName: memberName,
+                lineNumber: lineNumber
+            ),
+            exception: exception,
+            formatter: LogFormatter.Formatter<LogState>(message)
+        );
 }

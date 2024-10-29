@@ -6,8 +6,7 @@ public class LogExceptionTests
     private readonly MockTraceLogger _logger = new();
 
     [TestInitialize]
-    public void Initialize() =>
-        Settings.Settings.ReloadDefaults(); // Reset settings before each test
+    public void Initialize() => Settings.Settings.ReloadDefaults(); // Reset settings before each test
 
     [TestMethod]
     public void LogException_ThrowException_ABC()
@@ -22,12 +21,16 @@ public class LogExceptionTests
             _logger.LogException(exception);
         }
 
-        var result  = _logger.LastMessage ?? string.Empty;
-        var result1 = result.Contains($"[{nameof(LogExceptionTests)}.{nameof(LogException_ThrowException_ABC)}]");
+        var result = _logger.LastMessage ?? string.Empty;
+        var result1 = result.Contains(
+            $"[{nameof(LogExceptionTests)}.{nameof(LogException_ThrowException_ABC)}]"
+        );
         var result2 = result.Contains("Type: System.Exception");
         var result3 = result.Contains("Message: ABC");
         var result4 = result.Contains("Source: TJC.Logging.Tests");
-        var result5 = result.Contains($"Stack Trace: at TJC.Logging.Tests.Extensions.{nameof(LogExceptionTests)}.{nameof(LogException_ThrowException_ABC)}() in");
+        var result5 = result.Contains(
+            $"Stack Trace: at TJC.Logging.Tests.Extensions.{nameof(LogExceptionTests)}.{nameof(LogException_ThrowException_ABC)}() in"
+        );
         var result6 = result.Contains($@"\{nameof(LogExceptionTests)}.cs:line");
 
         // Assert
@@ -52,7 +55,7 @@ public class LogExceptionTests
             _logger.LogException(exception);
         }
 
-        var result  = _logger.LastMessage ?? string.Empty;
+        var result = _logger.LastMessage ?? string.Empty;
         var result1 = result.Contains("Inner Exception:");
 
         // Assert
@@ -72,7 +75,7 @@ public class LogExceptionTests
             _logger.LogException(exception);
         }
 
-        var result  = _logger.LastMessage ?? string.Empty;
+        var result = _logger.LastMessage ?? string.Empty;
         var result1 = result.Contains("Inner Exception: System.Exception: DEF");
 
         // Assert
@@ -92,10 +95,16 @@ public class LogExceptionTests
             _logger.LogException(exception);
         }
 
-        var result  = _logger.LastMessage ?? string.Empty;
-        var result1 = result.Contains($"\r\n\t\tat TJC.Logging.Tests.Mocks.{nameof(MockExceptionThrower)}.{nameof(MockExceptionThrower.ThrowException)}(String message) in");
-        var result2 = result.Contains($"\r\n\t\tat TJC.Logging.Tests.Mocks.{nameof(MockExceptionThrower)}.{nameof(MockExceptionThrower.CallMethodToThrowException)}(String message) in");
-        var result3 = result.Contains($"\r\n\t\tat TJC.Logging.Tests.Extensions.{nameof(LogExceptionTests)}.{nameof(LogException_ThrowException_WithStackTrace)}() in");
+        var result = _logger.LastMessage ?? string.Empty;
+        var result1 = result.Contains(
+            $"\r\n\t\tat TJC.Logging.Tests.Mocks.{nameof(MockExceptionThrower)}.{nameof(MockExceptionThrower.ThrowException)}(String message) in"
+        );
+        var result2 = result.Contains(
+            $"\r\n\t\tat TJC.Logging.Tests.Mocks.{nameof(MockExceptionThrower)}.{nameof(MockExceptionThrower.CallMethodToThrowException)}(String message) in"
+        );
+        var result3 = result.Contains(
+            $"\r\n\t\tat TJC.Logging.Tests.Extensions.{nameof(LogExceptionTests)}.{nameof(LogException_ThrowException_WithStackTrace)}() in"
+        );
 
         // Assert
         Assert.IsTrue(result1, "Stack trace new-lines with tabs not matching expected");

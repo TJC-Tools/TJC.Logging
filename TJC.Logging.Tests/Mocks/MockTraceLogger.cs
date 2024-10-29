@@ -17,16 +17,14 @@ internal class MockTraceLogger() : ILogger
     /// <param name="state"></param>
     /// <returns></returns>
     public IDisposable? BeginScope<TState>(TState state)
-        where TState : notnull =>
-        null;
+        where TState : notnull => null;
 
     /// <summary>
     /// Trace everything by default.
     /// </summary>
     /// <param name="logLevel"></param>
     /// <returns></returns>
-    public bool IsEnabled(LogLevel logLevel) =>
-        true;
+    public bool IsEnabled(LogLevel logLevel) => true;
 
     /// <summary>
     /// Log the message to Trace.
@@ -37,11 +35,13 @@ internal class MockTraceLogger() : ILogger
     /// <param name="state"></param>
     /// <param name="exception"></param>
     /// <param name="formatter"></param>
-    public void Log<TState>(LogLevel logLevel,
-                            EventId eventId,
-                            TState state,
-                            Exception? exception,
-                            Func<TState, Exception?, string> formatter)
+    public void Log<TState>(
+        LogLevel logLevel,
+        EventId eventId,
+        TState state,
+        Exception? exception,
+        Func<TState, Exception?, string> formatter
+    )
     {
         if (!IsEnabled(logLevel))
             return;

@@ -6,8 +6,8 @@ public class FormatTrackerSettings(
     string suffix = "]",
     string separator = " ",
     bool useLongUnits = false,
-    bool nanoSecondsNoDecimals = true)
-    : IFormattable
+    bool nanoSecondsNoDecimals = true
+) : IFormattable
 {
     #region Properties
 
@@ -36,7 +36,11 @@ public class FormatTrackerSettings(
         var duration = tracker.GetDuration();
         if (tracker.CompletionStatus == CompletionStatus.Started || duration == null)
             return result;
-        var durationString = duration.Value.GetElapsedTime(SignificantFigures, UseLongUnits, NanoSecondsNoDecimals);
+        var durationString = duration.Value.GetElapsedTime(
+            SignificantFigures,
+            UseLongUnits,
+            NanoSecondsNoDecimals
+        );
         return string.Concat(result, Separator, Prefix, durationString, Suffix);
     }
 

@@ -16,20 +16,23 @@ public static class LogSetExtension
     /// <param name="memberName"></param>
     /// <param name="lineNumber"></param>
     /// <returns></returns>
-    public static void LogSet<T>(this ILogger logger,
-                                 ref T obj,
-                                 T value,
-                                 [CallerArgumentExpression(nameof(obj))]
-                                 string argumentName = "",
-                                 [CallerMemberName] string memberName = "",
-                                 [CallerLineNumber] int lineNumber = -1)
+    public static void LogSet<T>(
+        this ILogger logger,
+        ref T obj,
+        T value,
+        [CallerArgumentExpression(nameof(obj))] string argumentName = "",
+        [CallerMemberName] string memberName = "",
+        [CallerLineNumber] int lineNumber = -1
+    )
     {
-        logger.LogMetadata(logLevel: LogLevel.Trace,
-                           specialtyLogType: SpecialtyLogTypes.Set,
-                           message: Settings.ToSetString(obj, value, argumentName),
-                           frameIndex: 1,
-                           memberName: memberName,
-                           lineNumber: lineNumber);
+        logger.LogMetadata(
+            logLevel: LogLevel.Trace,
+            specialtyLogType: SpecialtyLogTypes.Set,
+            message: Settings.ToSetString(obj, value, argumentName),
+            frameIndex: 1,
+            memberName: memberName,
+            lineNumber: lineNumber
+        );
         obj = value;
     }
 }

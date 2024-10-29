@@ -1,8 +1,6 @@
 ﻿namespace TJC.Logging.Settings.Format;
 
-public class FormatTimestampSettings(
-    bool include = true)
-    : IPrimaryFormatterSettings
+public class FormatTimestampSettings(bool include = true) : IPrimaryFormatterSettings
 {
     public Inclusion.Inclusion Include { get; set; } = new(include);
 

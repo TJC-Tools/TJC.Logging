@@ -6,8 +6,7 @@ public class TimestampFormatTests
     private readonly MockTraceLogger _logger = new();
 
     [TestInitialize]
-    public void Initialize() =>
-        Logging.Settings.Settings.ReloadDefaults(); // Reset logger settings before each test
+    public void Initialize() => Logging.Settings.Settings.ReloadDefaults(); // Reset logger settings before each test
 
     [TestMethod]
     public void LogMark_IncludeTimestampOnly()
@@ -25,7 +24,12 @@ public class TimestampFormatTests
 
         // Assert
         // Compare the log to the time before & after in case the second changes while logging
-        var logDateValid = _logger.LastMessage is not null && (_logger.LastMessage.Equals(before) || _logger.LastMessage.Equals(after));
-        Assert.IsTrue(logDateValid, $"[{_logger.LastMessage}] does not match [Before: {before}] OR [After: {after}]");
+        var logDateValid =
+            _logger.LastMessage is not null
+            && (_logger.LastMessage.Equals(before) || _logger.LastMessage.Equals(after));
+        Assert.IsTrue(
+            logDateValid,
+            $"[{_logger.LastMessage}] does not match [Before: {before}] OR [After: {after}]"
+        );
     }
 }
