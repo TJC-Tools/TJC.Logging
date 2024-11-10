@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.2] - 2024-11-10
+
 ### Changed
 
 - Add all dependency `.dll's` to the release
@@ -55,7 +57,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Message & exception extensions
 
-[Unreleased]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.5.1...HEAD
+[Unreleased]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.5.2...HEAD
+
+[0.5.2]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.5.1...v0.5.2
 
 [0.5.1]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.5.0...v0.5.1
 
