@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.3] - 2024-11-15
+
 ### Added
 
 - Changelog changed check workflow for pr's
@@ -61,7 +63,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Message & exception extensions
 
-[Unreleased]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.5.2...HEAD
+[Unreleased]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.5.3...HEAD
+
+[0.5.3]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.5.2...v0.5.3
 
 [0.5.2]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.5.1...v0.5.2
 
