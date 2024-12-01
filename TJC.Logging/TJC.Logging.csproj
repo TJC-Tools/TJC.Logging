@@ -39,7 +39,7 @@
     <PackageReference Include="TJC.Priority" Version="0.2.0" />
     <PackageReference Include="TJC.StringExtensions" Version="0.2.0" />
     <PackageReference Include="TJC.TimeExtensions" Version="0.1.6" />
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="8.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
   </ItemGroup>
   <!-- TESTS -->
   <ItemGroup>
