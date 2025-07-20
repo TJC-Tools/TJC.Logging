@@ -1,17 +1,17 @@
 ﻿namespace TJC.Logging.Providers;
 
 /// <summary>
-/// Provider for <seealso cref="ConsoleLogger"/>.
+/// Provider for <seealso cref="TraceLogger"/>.
 /// </summary>
-public class ConsoleLoggerProvider : ILoggerProvider
+public class TraceLoggerProvider : ILoggerProvider
 {
     /// <summary>
-    /// Create <seealso cref="ConsoleLogger"/>.
+    /// Create <seealso cref="TraceLogger"/>.
     /// </summary>
     /// <param name="categoryName"></param>
     /// <returns></returns>
     public ILogger CreateLogger(string categoryName) =>
-        new ConsoleLogger(categoryName);
+        new TraceLogger(categoryName);
 
     /// <summary>
     /// Dispose.
