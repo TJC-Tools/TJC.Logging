@@ -1,5 +1,8 @@
 ﻿namespace TJC.Logging.Extensions.Specialty;
 
+/// <summary>
+/// Logging get of a property or variable.
+/// </summary>
 public static class LogGetExtension
 {
     private static FormatGetSetSettings Settings =>

@@ -1,6 +1,4 @@
-﻿using TJC.Logging.Enums;
-
-namespace TJC.Logging.Interfaces;
+﻿namespace TJC.Logging.Interfaces;
 
 internal interface ILogState : IFormattable, IFormatProvider
 {

@@ -1,5 +1,8 @@
 ﻿namespace TJC.Logging.Extensions;
 
+/// <summary>
+/// Extensions for logging exceptions.
+/// </summary>
 public static class LogExceptionExtensions
 {
     /// <summary>

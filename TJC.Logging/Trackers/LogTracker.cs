@@ -1,5 +1,8 @@
 ﻿namespace TJC.Logging.Trackers;
 
+/// <summary>
+/// Log tracker.
+/// </summary>
 public class LogTracker : IFormatProvider
 {
     #region Static
@@ -10,6 +13,9 @@ public class LogTracker : IFormatProvider
 
     #region Constructor
 
+    /// <summary>
+    /// Log tracker.
+    /// </summary>
     public LogTracker()
     {
         Trackers.Add(this);
@@ -21,10 +27,19 @@ public class LogTracker : IFormatProvider
 
     #region Properties
 
+    /// <summary>
+    /// Start time of the log.
+    /// </summary>
     public DateTime StartTime { get; }
 
+    /// <summary>
+    /// End time of the log.
+    /// </summary>
     public DateTime? EndTime { get; private set; } = null;
 
+    /// <summary>
+    /// Status of the logs completion.
+    /// </summary>
     public CompletionStatus CompletionStatus { get; private set; }
 
     #endregion
@@ -38,12 +53,25 @@ public class LogTracker : IFormatProvider
         Trackers.Remove(this);
     }
 
-    public TimeSpan? GetDuration() => EndTime.HasValue ? EndTime.Value - StartTime : null;
+    /// <summary>
+    /// Get duration of the log.
+    /// </summary>
+    /// <returns></returns>
+    public TimeSpan? GetDuration() => _stopwatch.Elapsed;
 
+    /// <summary>
+    /// Format the log.
+    /// </summary>
+    /// <param name="formatType"></param>
+    /// <returns></returns>
     public object? GetFormat(Type? formatType) => this;
 
     #region Static
 
+    /// <summary>
+    /// Get count of how many <seealso cref="LogTracker"/>'s are active.
+    /// </summary>
+    /// <returns></returns>
     public static int GetActiveTrackerCount() => Trackers.Count;
 
     #endregion
