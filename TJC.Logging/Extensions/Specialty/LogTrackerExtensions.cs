@@ -1,7 +1,17 @@
 ﻿namespace TJC.Logging.Extensions.Specialty;
 
+/// <summary>
+/// Extensions for <seealso cref="LogTracker"/>.
+/// </summary>
 public static class LogTrackerExtensions
 {
+    /// <summary>
+    /// Start a log.
+    /// </summary>
+    /// <param name="logger"></param>
+    /// <param name="memberName"></param>
+    /// <param name="lineNumber"></param>
+    /// <returns></returns>
     public static LogTracker LogStart(
         this ILogger logger,
         [CallerMemberName] string memberName = "",
@@ -23,6 +33,15 @@ public static class LogTrackerExtensions
         return tracker;
     }
 
+    /// <summary>
+    /// End a log.
+    /// </summary>
+    /// <param name="logger"></param>
+    /// <param name="tracker"></param>
+    /// <param name="completionStatus"></param>
+    /// <param name="exception"></param>
+    /// <param name="memberName"></param>
+    /// <param name="lineNumber"></param>
     public static void LogEnd(
         this ILogger logger,
         LogTracker? tracker = null,
@@ -40,6 +59,13 @@ public static class LogTrackerExtensions
             lineNumber: lineNumber
         );
 
+    /// <summary>
+    /// Logged item finished successfully.
+    /// </summary>
+    /// <param name="logger"></param>
+    /// <param name="tracker"></param>
+    /// <param name="memberName"></param>
+    /// <param name="lineNumber"></param>
     public static void LogSuccess(
         this ILogger logger,
         LogTracker? tracker = null,
@@ -55,6 +81,14 @@ public static class LogTrackerExtensions
             lineNumber: lineNumber
         );
 
+    /// <summary>
+    /// Logged item finished with errors.
+    /// </summary>
+    /// <param name="logger"></param>
+    /// <param name="tracker"></param>
+    /// <param name="exception"></param>
+    /// <param name="memberName"></param>
+    /// <param name="lineNumber"></param>
     public static void LogFail(
         this ILogger logger,
         LogTracker? tracker = null,

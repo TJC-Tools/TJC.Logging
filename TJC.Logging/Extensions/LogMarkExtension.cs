@@ -1,5 +1,8 @@
 ﻿namespace TJC.Logging.Extensions;
 
+/// <summary>
+/// Extensions for logging detailed information about execution location.
+/// </summary>
 public static class LogMarkExtension
 {
     /// <summary>

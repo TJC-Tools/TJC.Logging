@@ -1,5 +1,8 @@
 ﻿namespace TJC.Logging.Extensions;
 
+/// <summary>
+/// Extensions for logging messages.
+/// </summary>
 public static class LogMessageExtension
 {
     /// <summary>

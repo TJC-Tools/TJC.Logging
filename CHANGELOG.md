@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Logger Factory
+- Composite Logger
+- Console Logger
+- Trace Logger
+
 ## [0.6.1] - 2025-04-15
 
 ## [0.6.0] - 2025-01-03

@@ -1,5 +1,8 @@
 ﻿namespace TJC.Logging.Extensions;
 
+/// <summary>
+/// Extensions for logging steps in a process.
+/// </summary>
 public static class LogStepExtension
 {
     /// <summary>
