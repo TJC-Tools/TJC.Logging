@@ -9,18 +9,20 @@ public static class LogTrackerExtensions
     /// Start a log.
     /// </summary>
     /// <param name="logger"></param>
+    /// <param name="logLevel"></param>
     /// <param name="memberName"></param>
     /// <param name="lineNumber"></param>
     /// <returns></returns>
     public static LogTracker LogStart(
         this ILogger logger,
+        LogLevel logLevel = LogLevel.Trace,
         [CallerMemberName] string memberName = "",
         [CallerLineNumber] int lineNumber = 0
     )
     {
         var tracker = new LogTracker();
         logger.LogMetadata(
-            logLevel: LogLevel.Trace,
+            logLevel: logLevel,
             specialtyLogType: SpecialtyLogTypes.Tracker,
             message: Settings.Settings.Instance.Formatting.Specialty.Tracker.ToString(
                 null,
@@ -37,6 +39,7 @@ public static class LogTrackerExtensions
     /// End a log.
     /// </summary>
     /// <param name="logger"></param>
+    /// <param name="logLevel"></param>
     /// <param name="tracker"></param>
     /// <param name="completionStatus"></param>
     /// <param name="exception"></param>
@@ -44,6 +47,7 @@ public static class LogTrackerExtensions
     /// <param name="lineNumber"></param>
     public static void LogEnd(
         this ILogger logger,
+        LogLevel logLevel = LogLevel.Trace,
         LogTracker? tracker = null,
         CompletionStatus completionStatus = CompletionStatus.Success,
         Exception? exception = null,
@@ -52,6 +56,7 @@ public static class LogTrackerExtensions
     ) =>
         logger.LogEndInternal(
             tracker: tracker,
+            logLevel: logLevel,
             completionStatus: completionStatus,
             exception: exception,
             frameIndex: 1,
@@ -63,17 +68,20 @@ public static class LogTrackerExtensions
     /// Logged item finished successfully.
     /// </summary>
     /// <param name="logger"></param>
+    /// <param name="logLevel"></param>
     /// <param name="tracker"></param>
     /// <param name="memberName"></param>
     /// <param name="lineNumber"></param>
     public static void LogSuccess(
         this ILogger logger,
+        LogLevel logLevel = LogLevel.Trace,
         LogTracker? tracker = null,
         [CallerMemberName] string memberName = "",
         [CallerLineNumber] int lineNumber = 0
     ) =>
         logger.LogEndInternal(
             tracker: tracker,
+            logLevel: logLevel,
             completionStatus: CompletionStatus.Success,
             exception: null,
             frameIndex: 1,
@@ -85,12 +93,14 @@ public static class LogTrackerExtensions
     /// Logged item finished with errors.
     /// </summary>
     /// <param name="logger"></param>
+    /// <param name="logLevel"></param>
     /// <param name="tracker"></param>
     /// <param name="exception"></param>
     /// <param name="memberName"></param>
     /// <param name="lineNumber"></param>
     public static void LogFail(
         this ILogger logger,
+        LogLevel logLevel = LogLevel.Trace,
         LogTracker? tracker = null,
         Exception? exception = null,
         [CallerMemberName] string memberName = "",
@@ -98,6 +108,7 @@ public static class LogTrackerExtensions
     ) =>
         logger.LogEndInternal(
             tracker: tracker,
+            logLevel: logLevel,
             completionStatus: CompletionStatus.Failure,
             exception: exception,
             frameIndex: 1,
@@ -107,6 +118,7 @@ public static class LogTrackerExtensions
 
     private static void LogEndInternal(
         this ILogger logger,
+        LogLevel logLevel,
         LogTracker? tracker = null,
         CompletionStatus completionStatus = CompletionStatus.Success,
         Exception? exception = null,
@@ -124,7 +136,7 @@ public static class LogTrackerExtensions
         tracker ??= new LogTracker();
         tracker.Complete(completionStatus);
         logger.LogMetadata(
-            logLevel: LogLevel.Trace,
+            logLevel: logLevel,
             specialtyLogType: SpecialtyLogTypes.Tracker,
             message: Settings.Settings.Instance.Formatting.Specialty.Tracker.ToString(
                 null,
