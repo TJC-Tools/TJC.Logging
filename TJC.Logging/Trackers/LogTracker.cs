@@ -11,6 +11,12 @@ public class LogTracker : IFormatProvider
 
     #endregion
 
+    #region Fields
+
+    private readonly Stopwatch _stopwatch;
+
+    #endregion
+
     #region Constructor
 
     /// <summary>
@@ -20,6 +26,8 @@ public class LogTracker : IFormatProvider
     {
         Trackers.Add(this);
         StartTime = DateTime.Now;
+        _stopwatch = new Stopwatch();
+        _stopwatch.Start();
         CompletionStatus = CompletionStatus.Started;
     }
 
@@ -48,8 +56,9 @@ public class LogTracker : IFormatProvider
 
     internal void Complete(CompletionStatus completionStatus)
     {
+        _stopwatch.Stop();
         CompletionStatus = completionStatus;
-        EndTime = DateTime.Now;
+        EndTime = StartTime + _stopwatch.Elapsed;
         Trackers.Remove(this);
     }
 
