@@ -10,8 +10,7 @@ public class TraceLoggerProvider : ILoggerProvider
     /// </summary>
     /// <param name="categoryName"></param>
     /// <returns></returns>
-    public ILogger CreateLogger(string categoryName) =>
-        new TraceLogger(categoryName);
+    public ILogger CreateLogger(string categoryName) => new TraceLogger(categoryName);
 
     /// <summary>
     /// Dispose.
