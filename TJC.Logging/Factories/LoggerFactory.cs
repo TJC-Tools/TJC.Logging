@@ -1,11 +1,18 @@
 ﻿namespace TJC.Logging.Factories;
 
-internal class LoggerFactory : ILoggerFactory
+/// <summary>
+/// Logger Factory.
+/// </summary>
+public class LoggerFactory : ILoggerFactory
 {
     private bool _disposed;
 
     private readonly List<ILoggerProvider> _providers = [];
 
+    /// <summary>
+    /// Add <seealso cref="ILoggerProvider"/>'s to the system.
+    /// </summary>
+    /// <param name="provider"></param>
     public void AddProvider(ILoggerProvider provider)
     {
         ObjectDisposedException.ThrowIf(_disposed, nameof(LoggerFactory));
@@ -13,6 +20,11 @@ internal class LoggerFactory : ILoggerFactory
         _providers.Add(provider);
     }
 
+    /// <summary>
+    /// Create a new <seealso cref="ILogger"/> instance.
+    /// </summary>
+    /// <param name="categoryName"></param>
+    /// <returns></returns>
     public ILogger CreateLogger(string categoryName)
     {
         ObjectDisposedException.ThrowIf(_disposed, nameof(LoggerFactory));
@@ -22,6 +34,9 @@ internal class LoggerFactory : ILoggerFactory
         return new CompositeLogger(loggers);
     }
 
+    /// <summary>
+    /// Dispose.
+    /// </summary>
     public void Dispose()
     {
         if (_disposed)
