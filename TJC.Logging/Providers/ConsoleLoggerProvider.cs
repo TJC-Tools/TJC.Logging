@@ -10,8 +10,7 @@ public class ConsoleLoggerProvider : ILoggerProvider
     /// </summary>
     /// <param name="categoryName"></param>
     /// <returns></returns>
-    public ILogger CreateLogger(string categoryName) =>
-        new ConsoleLogger(categoryName);
+    public ILogger CreateLogger(string categoryName) => new ConsoleLogger(categoryName);
 
     /// <summary>
     /// Dispose.
