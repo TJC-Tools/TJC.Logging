@@ -14,6 +14,32 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Console Logger
 - Trace Logger
 
+## [0.6.1] - 2025-04-15
+
+## [0.6.0] - 2025-01-03
+
+## [0.5.6] - 2025-01-03
+
+## [0.5.5] - 2024-12-03
+
+## [0.5.4] - 2024-12-03
+
+## [0.5.3] - 2024-11-15
+
+### Added
+
+- Changelog changed check workflow for pr's
+
+## [0.5.2] - 2024-11-10
+
+### Changed
+
+- Add all dependency `.dll's` to the release
+
+## [0.5.1] - 2024-11-05
+
+## [0.5.0] - 2024-11-05
+
 ## [0.4.1] - 2024-10-26
 
 ### Added
@@ -54,7 +80,25 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Message & exception extensions
 
-[Unreleased]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.4.1...HEAD
+[Unreleased]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.6.1...HEAD
+
+[0.6.1]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.6.0...v0.6.1
+
+[0.6.0]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.5.6...v0.6.0
+
+[0.5.6]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.5.5...v0.5.6
+
+[0.5.5]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.5.4...v0.5.5
+
+[0.5.4]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.5.3...v0.5.4
+
+[0.5.3]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.5.2...v0.5.3
+
+[0.5.2]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.5.1...v0.5.2
+
+[0.5.1]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.5.0...v0.5.1
+
+[0.5.0]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.4.1...v0.5.0
 
 [0.4.1]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.4.0...v0.4.1
 
