@@ -11,6 +11,7 @@ global using TJC.Logging.Extensions.Specialty;
 global using TJC.Logging.Formatter;
 global using TJC.Logging.Helpers;
 global using TJC.Logging.Interfaces;
+global using TJC.Logging.Loggers;
 global using TJC.Logging.Settings.Format;
 global using TJC.Logging.Settings.Format.Specialty;
 global using TJC.Logging.States;
