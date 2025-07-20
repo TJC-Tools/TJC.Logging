@@ -9,7 +9,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
-- Add log level to LogStart and LogEnd methods
+- Add optional log level to LogStart and LogEnd methods
+- Add optional message to LogStart which will be carried through to LogEnd
 
 ## [0.7.1] - 2025-07-20
 
