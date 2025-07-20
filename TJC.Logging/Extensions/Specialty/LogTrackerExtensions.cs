@@ -9,23 +9,24 @@ public static class LogTrackerExtensions
     /// Start a log.
     /// </summary>
     /// <param name="logger"></param>
+    /// <param name="logLevel"></param>
+    /// <param name="message"></param>
     /// <param name="memberName"></param>
     /// <param name="lineNumber"></param>
     /// <returns></returns>
     public static LogTracker LogStart(
         this ILogger logger,
+        LogLevel logLevel = LogLevel.Trace,
+        string? message = null,
         [CallerMemberName] string memberName = "",
         [CallerLineNumber] int lineNumber = 0
     )
     {
-        var tracker = new LogTracker();
+        var tracker = new LogTracker(message, logLevel);
         logger.LogMetadata(
-            logLevel: LogLevel.Trace,
+            logLevel: logLevel,
             specialtyLogType: SpecialtyLogTypes.Tracker,
-            message: Settings.Settings.Instance.Formatting.Specialty.Tracker.ToString(
-                null,
-                tracker
-            ),
+            message: GetMessage(tracker),
             frameIndex: 1,
             memberName: memberName,
             lineNumber: lineNumber
@@ -124,16 +125,16 @@ public static class LogTrackerExtensions
         tracker ??= new LogTracker();
         tracker.Complete(completionStatus);
         logger.LogMetadata(
-            logLevel: LogLevel.Trace,
+            logLevel: tracker.LogLevel,
             specialtyLogType: SpecialtyLogTypes.Tracker,
-            message: Settings.Settings.Instance.Formatting.Specialty.Tracker.ToString(
-                null,
-                tracker
-            ),
+            message: GetMessage(tracker),
             frameIndex: frameIndex + 1,
             exception: exception,
             memberName: memberName,
             lineNumber: lineNumber
         );
     }
+
+    private static string GetMessage(LogTracker tracker) =>
+        string.Concat(tracker.Message, Settings.Settings.Instance.Formatting.Specialty.Tracker.ToString(null, tracker));
 }

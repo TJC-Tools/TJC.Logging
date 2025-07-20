@@ -22,9 +22,11 @@ public class LogTracker : IFormatProvider
     /// <summary>
     /// Log tracker.
     /// </summary>
-    public LogTracker()
+    public LogTracker(string? message = null, LogLevel logLevel = LogLevel.Trace)
     {
         Trackers.Add(this);
+        Message = message;
+        LogLevel = logLevel;
         StartTime = DateTime.Now;
         _stopwatch = new Stopwatch();
         _stopwatch.Start();
@@ -34,6 +36,16 @@ public class LogTracker : IFormatProvider
     #endregion
 
     #region Properties
+
+    /// <summary>
+    /// Message associated with tracker.
+    /// </summary>
+    public string? Message { get; }
+
+    /// <summary>
+    /// Log level of this tracker.
+    /// </summary>
+    public LogLevel LogLevel { get; }
 
     /// <summary>
     /// Start time of the log.
