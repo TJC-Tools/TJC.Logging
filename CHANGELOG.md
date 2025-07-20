@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Add log level to LogStart and LogEnd methods
+
 ## [0.7.1] - 2025-07-20
 
 ### Changed
@@ -23,16 +27,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Trace Logger
 
 ## [0.6.1] - 2025-04-15
-
-## [0.6.0] - 2025-01-03
-
-## [0.5.6] - 2025-01-03
-
-## [0.5.5] - 2024-12-03
-
-## [0.5.4] - 2024-12-03
-
-## [0.5.3] - 2024-11-15
 
 ### Added
 
