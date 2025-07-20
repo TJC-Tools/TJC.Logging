@@ -28,5 +28,5 @@ public enum CompletionStatus
     /// <summary>
     /// Unknown
     /// </summary>
-    Unknown
+    Unknown,
 }

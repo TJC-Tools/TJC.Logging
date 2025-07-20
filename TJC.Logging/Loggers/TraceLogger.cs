@@ -15,8 +15,7 @@ public class TraceLogger(string categoryName) : ILogger
     /// <param name="state"></param>
     /// <returns></returns>
     public IDisposable? BeginScope<TState>(TState state)
-        where TState : notnull
-        => default!;
+        where TState : notnull => default!;
 
     /// <summary>
     /// Checks if the given <paramref name="logLevel"/> is enabled.
@@ -34,7 +33,13 @@ public class TraceLogger(string categoryName) : ILogger
     /// <param name="state"></param>
     /// <param name="exception"></param>
     /// <param name="formatter"></param>
-    public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception?, string> formatter)
+    public void Log<TState>(
+        LogLevel logLevel,
+        EventId eventId,
+        TState state,
+        Exception? exception,
+        Func<TState, Exception?, string> formatter
+    )
     {
         Trace.WriteLine($"[{logLevel}] {_category}: {formatter(state, exception)}");
     }
