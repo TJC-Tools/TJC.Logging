@@ -136,5 +136,8 @@ public static class LogTrackerExtensions
     }
 
     private static string GetMessage(LogTracker tracker) =>
-        string.Concat(tracker.Message, Settings.Settings.Instance.Formatting.Specialty.Tracker.ToString(null, tracker));
+        string.Concat(
+            tracker.Message,
+            Settings.Settings.Instance.Formatting.Specialty.Tracker.ToString(null, tracker)
+        );
 }
