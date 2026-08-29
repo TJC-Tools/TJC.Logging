@@ -17,7 +17,7 @@ jobs:
       contents: write # Needed for pushing commits and tags
       packages: write # Needed for pushing packages to GitHub Packages
       id-token: write # Needed for temporary api key
-    steps:    
+    steps:
       - name: Checkout [${{ github.ref_name }}]
         uses: actions/checkout@v4
         with:
@@ -33,7 +33,7 @@ jobs:
         id: nugetLogin
         with:
           user: ${{ secrets.TJC_NUGET_USER }}
-      
+
       - name: Setup .NET 8.0
         uses: actions/setup-dotnet@v4
         with:
