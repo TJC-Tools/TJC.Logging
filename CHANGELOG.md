@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.4] - 2026-09-11
+
 ## [0.7.3] - 2026-08-29
 
 ## [0.7.2] - 2025-07-20
@@ -79,7 +81,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Message & exception extensions
 
-[Unreleased]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.7.3...HEAD
+[Unreleased]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.7.4...HEAD
+
+[0.7.4]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.7.3...v0.7.4
 
 [0.7.3]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.7.2...v0.7.3
 
