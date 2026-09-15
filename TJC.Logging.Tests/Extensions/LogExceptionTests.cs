@@ -111,4 +111,14 @@ public class LogExceptionTests
         Assert.IsTrue(result2, "Stack trace new-lines with tabs not matching expected");
         Assert.IsTrue(result3, "Stack trace new-lines with tabs not matching expected");
     }
+
+    [TestMethod]
+    public void LogException_WithoutStackTrace_LogsEmptyStackTrace()
+    {
+        // Act
+        _logger.LogException(new Exception("ABC"));
+
+        // Assert
+        Assert.IsTrue(_logger.LastMessage?.Contains("Stack Trace: "));
+    }
 }

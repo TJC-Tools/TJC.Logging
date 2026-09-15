@@ -28,4 +28,19 @@ public class LogStepTests
         Assert.AreEqual("Step 2", step2);
         Assert.AreEqual("Step 3", step3);
     }
+
+    [TestMethod]
+    public void LogStep_ValueOverload_LogsProvidedStepWithoutMutation()
+    {
+        // Arrange
+        Settings.Settings.Instance.Formatting.ExcludeAll();
+        const int step = 4;
+
+        // Act
+        _logger.LogStep(step);
+
+        // Assert
+        Assert.AreEqual(4, step);
+        Assert.AreEqual("Step 4", _logger.LastMessage);
+    }
 }

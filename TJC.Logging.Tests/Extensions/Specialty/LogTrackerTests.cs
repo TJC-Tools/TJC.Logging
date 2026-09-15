@@ -5,6 +5,9 @@ public class LogTrackerTests
 {
     private readonly MockTraceLogger _logger = new();
 
+    [TestInitialize]
+    public void Initialize() => Settings.Settings.ReloadDefaults();
+
     [TestMethod]
     public void LogStart_ShouldInitializeLogTracker()
     {
@@ -104,5 +107,53 @@ public class LogTrackerTests
 
         // Act
         _logger.LogEnd(tracker, CompletionStatus.Started);
+    }
+
+    [TestMethod]
+    public void LogSuccess_ShouldCompleteTracker()
+    {
+        // Arrange
+        var tracker = new LogTracker();
+
+        // Act
+        _logger.LogSuccess(tracker);
+
+        // Assert
+        Assert.AreEqual(CompletionStatus.Success, tracker.CompletionStatus);
+        Assert.IsNotNull(tracker.EndTime);
+    }
+
+    [TestMethod]
+    public void LogFail_ShouldCompleteTrackerAndLogException()
+    {
+        // Arrange
+        var tracker = new LogTracker();
+        var exception = new InvalidOperationException("failure");
+
+        // Act
+        _logger.LogFail(tracker, exception);
+
+        // Assert
+        Assert.AreEqual(CompletionStatus.Failure, tracker.CompletionStatus);
+        Assert.IsTrue(_logger.LastMessage?.Contains("failure"));
+    }
+
+    [TestMethod]
+    public void LogTracker_ExposesFormatProviderAndActiveTrackerCount()
+    {
+        // Arrange
+        var activeTrackerCount = LogTracker.GetActiveTrackerCount();
+        var tracker = new LogTracker("message", LogLevel.Warning);
+
+        // Act
+        var formatProvider = tracker.GetFormat(null);
+        var updatedTrackerCount = LogTracker.GetActiveTrackerCount();
+        tracker.Complete(CompletionStatus.Success);
+
+        // Assert
+        Assert.AreEqual("message", tracker.Message);
+        Assert.AreEqual(LogLevel.Warning, tracker.LogLevel);
+        Assert.AreSame(tracker, formatProvider);
+        Assert.AreEqual(activeTrackerCount + 1, updatedTrackerCount);
     }
 }
