@@ -2,13 +2,11 @@ using TJC.Logging.Settings.Format;
 
 namespace TJC.Logging.Tests.Format;
 
-
 [Collection("Logging")]
-
-
 public class FormatMarkdownSettingsTests
 {
     private readonly MockMarkdownLogger _logger = new();
+
     public FormatMarkdownSettingsTests()
     {
         TJC.Logging.Settings.Settings.ReloadDefaults();

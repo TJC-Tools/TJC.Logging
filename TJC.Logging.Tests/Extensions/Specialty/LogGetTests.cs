@@ -1,12 +1,10 @@
 namespace TJC.Logging.Tests.Extensions.Specialty;
 
-
 [Collection("Logging")]
-
-
 public class LogGetTests
 {
     private readonly MockTraceLogger _logger = new();
+
     public LogGetTests() => Settings.Settings.ReloadDefaults(); // Reset logger settings before each test
 
     [Fact]
@@ -25,7 +23,7 @@ public class LogGetTests
         var value2 = _logger.LogGet(value1);
 
         // Assert
-        Assert.Equal(null, value2);
+        Assert.Null(value2);
         var expected = string.Concat(nameof(SpecialtyLogTypes.Get), nameof(value1), " is null");
         Assert.Equal(expected, _logger.LastMessage);
     }
