@@ -61,6 +61,20 @@ public class FormattingSettings : IFormattable
             formatter.IncludeAll();
     }
 
+    internal virtual string FormatLog(
+        ILogState state,
+        string message,
+        Exception? exception,
+        LogLevel logLevel
+    )
+    {
+        var result = ToString(null, state);
+        result += message;
+        if (exception != null)
+            result += $" | Exception: {exception.Message}";
+        return result;
+    }
+
     #region IFormattable
 
     /// <summary>

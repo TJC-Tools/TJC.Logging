@@ -33,6 +33,6 @@ internal static class LogMetadataExtension
                 lineNumber: lineNumber
             ),
             exception: exception,
-            formatter: LogFormatter.Formatter<LogState>(message)
+            formatter: LogFormatter.Formatter<LogState>(message, logLevel)
         );
 }
