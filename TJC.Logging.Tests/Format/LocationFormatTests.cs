@@ -1,11 +1,10 @@
 namespace TJC.Logging.Tests.Format;
 
 [Collection("Logging")]
-
-
 public class LocationFormatTests
 {
     private readonly MockTraceLogger _logger = new();
+
     public LocationFormatTests() => Settings.Settings.ReloadDefaults(); // Reset settings before each test
 
     [Fact]

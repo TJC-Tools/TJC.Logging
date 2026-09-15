@@ -1,12 +1,10 @@
 namespace TJC.Logging.Tests.Format;
 
-
 [Collection("Logging")]
-
-
 public class TimestampFormatTests
 {
     private readonly MockTraceLogger _logger = new();
+
     public TimestampFormatTests() => Logging.Settings.Settings.ReloadDefaults(); // Reset logger settings before each test
 
     [Fact]

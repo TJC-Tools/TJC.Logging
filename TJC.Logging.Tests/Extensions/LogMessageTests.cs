@@ -1,12 +1,10 @@
 namespace TJC.Logging.Tests.Extensions;
 
-
 [Collection("Logging")]
-
-
 public class LogMessageTests
 {
     private readonly MockTraceLogger _logger = new();
+
     public LogMessageTests() => Settings.Settings.ReloadDefaults(); // Reset settings before each test
 
     [Fact]

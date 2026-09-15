@@ -1,12 +1,10 @@
 namespace TJC.Logging.Tests.Extensions.Specialty;
 
-
 [Collection("Logging")]
-
-
 public class LogTrackerTests
 {
     private readonly MockTraceLogger _logger = new();
+
     public LogTrackerTests() => Settings.Settings.ReloadDefaults();
 
     [Fact]
@@ -28,7 +26,7 @@ public class LogTrackerTests
         Assert.Equal(message, _logger.LastMessage);
         Assert.NotNull(tracker);
         Assert.Equal(CompletionStatus.Started, tracker.CompletionStatus);
-        Assert.True(LogTracker.Trackers.Contains(tracker));
+        Assert.Contains(tracker, LogTracker.Trackers);
     }
 
     [Fact]
@@ -51,7 +49,7 @@ public class LogTrackerTests
         Assert.True(_logger.LastMessage?.StartsWith(message));
         Assert.Equal(CompletionStatus.Success, tracker.CompletionStatus);
         Assert.NotNull(tracker.EndTime);
-        Assert.False(LogTracker.Trackers.Contains(tracker));
+        Assert.DoesNotContain(tracker, LogTracker.Trackers);
     }
 
     [Fact]
@@ -73,7 +71,7 @@ public class LogTrackerTests
         Assert.True(_logger.LastMessage?.StartsWith(message));
         Assert.Equal(CompletionStatus.Failure, tracker.CompletionStatus);
         Assert.NotNull(tracker.EndTime);
-        Assert.False(LogTracker.Trackers.Contains(tracker));
+        Assert.DoesNotContain(tracker, LogTracker.Trackers);
     }
 
     [Fact]
