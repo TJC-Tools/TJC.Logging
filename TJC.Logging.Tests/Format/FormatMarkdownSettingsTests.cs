@@ -96,10 +96,11 @@ public class FormatMarkdownSettingsTests
         AssertCalloutType(LogLevel.Error, "FAIL");
         AssertCalloutType(LogLevel.Critical, "DANGER");
 
-        void AssertCalloutType(LogLevel logLevel, string calloutType) => StringAssert.StartsWith(
-            settings.FormatLog(state, "message", null, logLevel),
-            $"> [!{calloutType}]- "
-        );
+        void AssertCalloutType(LogLevel logLevel, string calloutType) =>
+            StringAssert.StartsWith(
+                settings.FormatLog(state, "message", null, logLevel),
+                $"> [!{calloutType}]- "
+            );
     }
 
     private sealed class TestLogState(

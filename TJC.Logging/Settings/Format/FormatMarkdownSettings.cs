@@ -93,12 +93,17 @@ public class FormatMarkdownSettings : FormattingSettings
     {
         var lines = template.Replace("\r\n", "\n").Replace('\r', '\n').Split('\n');
         return lines
-            .Where(line => !values.Any(value => line.Contains(value.Key) && string.IsNullOrEmpty(value.Value)))
+            .Where(line =>
+                !values.Any(value => line.Contains(value.Key) && string.IsNullOrEmpty(value.Value))
+            )
             .Select(line => FormatTemplate(line, values))
             .Where(line => !string.IsNullOrEmpty(line));
     }
 
-    private static string FormatTemplate(string template, IReadOnlyDictionary<string, string> values)
+    private static string FormatTemplate(
+        string template,
+        IReadOnlyDictionary<string, string> values
+    )
     {
         foreach (var value in values)
             template = template.Replace(value.Key, value.Value);

@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.8.0] - 2026-09-15
+
 ### Added
 
 - Markdown callout logging format
@@ -89,7 +91,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Message & exception extensions
 
-[Unreleased]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.7.4...HEAD
+[Unreleased]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.8.0...HEAD
+
+[0.8.0]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.7.4...v0.8.0
 
 [0.7.4]: https://github.com/TJC-Tools/TJC.Logging/compare/v0.7.3...v0.7.4
 
