@@ -8,10 +8,8 @@ internal sealed class MockMarkdownLogger : ILogger
     /// <summary>
     /// Markdown log file created by the tests.
     /// </summary>
-    public static string LogFilePath { get; } = Path.Combine(
-        Directory.GetCurrentDirectory(),
-        "MarkdownLog.md"
-    );
+    public static string LogFilePath { get; } =
+        Path.Combine(Directory.GetCurrentDirectory(), "MarkdownLog.md");
 
     /// <summary>
     /// Most recent message written to the file.
