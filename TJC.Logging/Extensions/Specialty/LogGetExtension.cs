@@ -1,4 +1,4 @@
-﻿namespace TJC.Logging.Extensions.Specialty;
+namespace TJC.Logging.Extensions.Specialty;
 
 /// <summary>
 /// Logging get of a property or variable.

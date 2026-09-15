@@ -1,4 +1,4 @@
-﻿namespace TJC.Logging.Extensions;
+namespace TJC.Logging.Extensions;
 
 internal static class LogMetadataExtension
 {

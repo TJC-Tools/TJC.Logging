@@ -2,13 +2,14 @@ using TJC.Logging.Settings.Format;
 
 namespace TJC.Logging.Tests.Format;
 
-[TestClass]
+
+[Collection("Logging")]
+
+
 public class FormatMarkdownSettingsTests
 {
     private readonly MockMarkdownLogger _logger = new();
-
-    [TestInitialize]
-    public void Initialize()
+    public FormatMarkdownSettingsTests()
     {
         TJC.Logging.Settings.Settings.ReloadDefaults();
         var settings = new FormatMarkdownSettings();
@@ -16,7 +17,7 @@ public class FormatMarkdownSettingsTests
         TJC.Logging.Settings.Settings.Instance.Formatting = settings;
     }
 
-    [TestMethod]
+    [Fact]
     public void LogMessage_WritesMarkdownCalloutToFile()
     {
         // Act
@@ -24,14 +25,14 @@ public class FormatMarkdownSettingsTests
         var result = File.ReadAllText(MockMarkdownLogger.LogFilePath);
 
         // Assert
-        Assert.AreEqual(_logger.LastMessage, result);
-        StringAssert.StartsWith(
-            result,
-            $"> [!QUOTE]- [{nameof(FormatMarkdownSettingsTests)}.{nameof(LogMessage_WritesMarkdownCalloutToFile)}]{Environment.NewLine}> {DateTime.Now:yyyy}{Environment.NewLine}> ABC{Environment.NewLine}{Environment.NewLine}"
+        Assert.Equal(_logger.LastMessage, result);
+        Assert.StartsWith(
+            $"> [!QUOTE]- [{nameof(FormatMarkdownSettingsTests)}.{nameof(LogMessage_WritesMarkdownCalloutToFile)}]{Environment.NewLine}> {DateTime.Now:yyyy}{Environment.NewLine}> ABC{Environment.NewLine}{Environment.NewLine}",
+            result
         );
     }
 
-    [TestMethod]
+    [Fact]
     public void FormatLog_WritesExceptionAsCalloutLine()
     {
         // Arrange
@@ -48,13 +49,13 @@ public class FormatMarkdownSettingsTests
         var result = settings.FormatLog(state, "message", new Exception("failure"), LogLevel.Error);
 
         // Assert
-        Assert.AreEqual(
+        Assert.Equal(
             $"> [!FAIL]- [{nameof(FormatMarkdownSettingsTests)}.Member]{Environment.NewLine}> 2026{Environment.NewLine}> message{Environment.NewLine}> Exception: failure{Environment.NewLine}{Environment.NewLine}",
             result
         );
     }
 
-    [TestMethod]
+    [Fact]
     public void FormatLog_UsesConfiguredTitleAndContentTemplates()
     {
         // Arrange
@@ -75,13 +76,13 @@ public class FormatMarkdownSettingsTests
         var result = settings.FormatLog(state, "message", new Exception("failure"), LogLevel.Error);
 
         // Assert
-        Assert.AreEqual(
+        Assert.Equal(
             $"> [!FAIL]- message at [{nameof(FormatMarkdownSettingsTests)}.Member]{Environment.NewLine}> When: 2026{Environment.NewLine}> Issue: failure{Environment.NewLine}> Details: message{Environment.NewLine}{Environment.NewLine}",
             result
         );
     }
 
-    [TestMethod]
+    [Fact]
     public void FormatLog_ExpandedCalloutOmitsEmptyExceptionLine()
     {
         var state = new TestLogState(SpecialtyLogTypes.None, null, "", 0);
@@ -93,13 +94,13 @@ public class FormatMarkdownSettingsTests
 
         var result = settings.FormatLog(state, "message", null, LogLevel.None);
 
-        Assert.AreEqual(
+        Assert.Equal(
             $"> [!NOTE] [UNKNOWN_TYPE.]{Environment.NewLine}> message{Environment.NewLine}{Environment.NewLine}",
             result
         );
     }
 
-    [TestMethod]
+    [Fact]
     public void FormatLog_UsesCalloutTypeForLogLevel()
     {
         // Arrange
@@ -115,9 +116,9 @@ public class FormatMarkdownSettingsTests
         AssertCalloutType(LogLevel.Critical, "DANGER");
 
         void AssertCalloutType(LogLevel logLevel, string calloutType) =>
-            StringAssert.StartsWith(
-                settings.FormatLog(state, "message", null, logLevel),
-                $"> [!{calloutType}]- "
+            Assert.StartsWith(
+                $"> [!{calloutType}]- ",
+                settings.FormatLog(state, "message", null, logLevel)
             );
     }
 

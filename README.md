@@ -6,6 +6,7 @@
 ![Size](https://img.shields.io/github/repo-size/TJC-Tools/TJC.Logging)
 [![License](https://img.shields.io/github/license/TJC-Tools/TJC.Logging.svg)](LICENSE)
 
+[![tests](https://github.com/TJC-Tools/TJC.Logging/actions/workflows/ct-matrix.yml/badge.svg)](https://github.com/TJC-Tools/TJC.Logging/actions/workflows/ct-matrix.yml)
 [![codecov](https://codecov.io/gh/TJC-Tools/TJC.Logging/graph/badge.svg?token=7DMUOKS28E)](https://codecov.io/gh/TJC-Tools/TJC.Logging)
 
 ## Documentation

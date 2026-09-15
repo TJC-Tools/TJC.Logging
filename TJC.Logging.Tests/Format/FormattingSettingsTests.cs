@@ -3,10 +3,13 @@ using TJC.Logging.Settings.Format.Specialty;
 
 namespace TJC.Logging.Tests.Format;
 
-[TestClass]
+
+[Collection("Logging")]
+
+
 public class FormattingSettingsTests
 {
-    [TestMethod]
+    [Fact]
     public void Formatters_UseStateAndRejectUnsupportedProviders()
     {
         // Arrange
@@ -31,18 +34,18 @@ public class FormattingSettingsTests
         var specialtyResult = specialty.ToString(null, state);
 
         // Assert
-        Assert.AreEqual(state.DateTime.ToString("yyyy"), timestampResult);
-        Assert.AreEqual(
+        Assert.Equal(state.DateTime.ToString("yyyy"), timestampResult);
+        Assert.Equal(
             "[TJC.Logging.Tests.Format.FormattingSettingsTests.Member.7]",
             locationResult
         );
-        Assert.AreEqual("<Get>", specialtyResult);
-        Assert.ThrowsException<NotImplementedException>(() => timestamp.ToString(null, null));
-        Assert.ThrowsException<NotImplementedException>(() => location.ToString(null, null));
-        Assert.ThrowsException<NotImplementedException>(() => specialty.ToString(null, null));
+        Assert.Equal("<Get>", specialtyResult);
+        Assert.Throws<NotImplementedException>(() => timestamp.ToString(null, null));
+        Assert.Throws<NotImplementedException>(() => location.ToString(null, null));
+        Assert.Throws<NotImplementedException>(() => specialty.ToString(null, null));
     }
 
-    [TestMethod]
+    [Fact]
     public void FormatLocation_UsesUnknownNames_WhenCallingTypeIsUnavailable()
     {
         // Arrange
@@ -59,11 +62,11 @@ public class FormattingSettingsTests
         var result = settings.ToString(null, state);
 
         // Assert
-        Assert.AreEqual("[UNKNOWN_NAMESPACE|UNKNOWN_TYPE|Member|7]", result);
-        Assert.IsNotNull(FormatLocationSettings.Default);
+        Assert.Equal("[UNKNOWN_NAMESPACE|UNKNOWN_TYPE|Member|7]", result);
+        Assert.NotNull(FormatLocationSettings.Default);
     }
 
-    [TestMethod]
+    [Fact]
     public void FormattingSettings_IncludeAndExcludeFormatters()
     {
         // Arrange
@@ -82,13 +85,13 @@ public class FormattingSettingsTests
         var included = settings.ToString(null, state);
 
         // Assert
-        Assert.AreEqual(string.Empty, excluded);
-        Assert.IsTrue(included.Contains("FormattingSettingsTests"));
-        Assert.ThrowsException<NotImplementedException>(() => settings.ToString(null, null));
-        Assert.ThrowsException<NotImplementedException>(() => settings.ToString());
+        Assert.Equal(string.Empty, excluded);
+        Assert.True(included.Contains("FormattingSettingsTests"));
+        Assert.Throws<NotImplementedException>(() => settings.ToString(null, null));
+        Assert.Throws<NotImplementedException>(() => settings.ToString());
     }
 
-    [TestMethod]
+    [Fact]
     public void FormatSpecialty_ReturnsEmptyForNoSpecialty()
     {
         // Arrange
@@ -99,10 +102,10 @@ public class FormattingSettingsTests
         var result = settings.ToString(null, state);
 
         // Assert
-        Assert.AreEqual(string.Empty, result);
+        Assert.Equal(string.Empty, result);
     }
 
-    [TestMethod]
+    [Fact]
     public void GetSetSettings_FormatsNullAndValues()
     {
         // Arrange
@@ -113,11 +116,11 @@ public class FormattingSettingsTests
         var set = settings.ToSetString("old", "new", "value");
 
         // Assert
-        Assert.AreEqual("[value] is null", get);
-        Assert.AreEqual("[value] from [old] to [new]", set);
+        Assert.Equal("[value] is null", get);
+        Assert.Equal("[value] from [old] to [new]", set);
     }
 
-    [TestMethod]
+    [Fact]
     public void TrackerSettings_FormatsActiveAndCompletedTrackers()
     {
         // Arrange
@@ -130,9 +133,9 @@ public class FormattingSettingsTests
         var completed = settings.ToString(null, tracker);
 
         // Assert
-        Assert.AreEqual(" Started", active);
-        Assert.IsTrue(completed.StartsWith(" Success ["));
-        Assert.ThrowsException<NotImplementedException>(() => settings.ToString(null, null));
+        Assert.Equal(" Started", active);
+        Assert.True(completed.StartsWith(" Success ["));
+        Assert.Throws<NotImplementedException>(() => settings.ToString(null, null));
     }
 
     private sealed class TestLogState(

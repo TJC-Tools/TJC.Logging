@@ -1,14 +1,14 @@
 namespace TJC.Logging.Tests.Format;
 
-[TestClass]
+[Collection("Logging")]
+
+
 public class LocationFormatTests
 {
     private readonly MockTraceLogger _logger = new();
+    public LocationFormatTests() => Settings.Settings.ReloadDefaults(); // Reset settings before each test
 
-    [TestInitialize]
-    public void Initialize() => Settings.Settings.ReloadDefaults(); // Reset settings before each test
-
-    [TestMethod]
+    [Fact]
     public void LogMark_IncludeAll()
     {
         // Arrange
@@ -28,10 +28,10 @@ public class LocationFormatTests
             nameof(LogMark_IncludeAll),
             "22"
         );
-        Assert.AreEqual(location, _logger.LastMessage);
+        Assert.Equal(location, _logger.LastMessage);
     }
 
-    [TestMethod]
+    [Fact]
     public void LogMark_IncludeLineNumberOnly()
     {
         // Arrange
@@ -45,10 +45,10 @@ public class LocationFormatTests
         _logger.LogMark();
 
         // Assert
-        Assert.AreEqual("45", _logger.LastMessage);
+        Assert.Equal("45", _logger.LastMessage);
     }
 
-    [TestMethod]
+    [Fact]
     public void LogMark_IncludeNamespaceOnly()
     {
         // Arrange
@@ -62,10 +62,10 @@ public class LocationFormatTests
         _logger.LogMark();
 
         // Assert
-        Assert.AreEqual(typeof(LocationFormatTests).Namespace, _logger.LastMessage);
+        Assert.Equal(typeof(LocationFormatTests).Namespace, _logger.LastMessage);
     }
 
-    [TestMethod]
+    [Fact]
     public void LogMark_IncludeTypeNameOnly()
     {
         // Arrange
@@ -79,10 +79,10 @@ public class LocationFormatTests
         _logger.LogMark();
 
         // Assert
-        Assert.AreEqual(nameof(LocationFormatTests), _logger.LastMessage);
+        Assert.Equal(nameof(LocationFormatTests), _logger.LastMessage);
     }
 
-    [TestMethod]
+    [Fact]
     public void LogMark_IncludeMemberNameOnly()
     {
         // Arrange
@@ -96,10 +96,10 @@ public class LocationFormatTests
         _logger.LogMark();
 
         // Assert
-        Assert.AreEqual(nameof(LogMark_IncludeMemberNameOnly), _logger.LastMessage);
+        Assert.Equal(nameof(LogMark_IncludeMemberNameOnly), _logger.LastMessage);
     }
 
-    [TestMethod]
+    [Fact]
     public void IncludeTypeAndMemberName()
     {
         // Arrange
@@ -116,10 +116,10 @@ public class LocationFormatTests
 
         // Assert
         var location = string.Concat(nameof(LocationFormatTests), nameof(IncludeTypeAndMemberName));
-        Assert.AreEqual(location, _logger.LastMessage);
+        Assert.Equal(location, _logger.LastMessage);
     }
 
-    [TestMethod]
+    [Fact]
     public void LogMark_IncludeTypeAndMemberNameOnly()
     {
         // Arrange
@@ -139,10 +139,10 @@ public class LocationFormatTests
             nameof(LocationFormatTests),
             nameof(LogMark_IncludeTypeAndMemberNameOnly)
         );
-        Assert.AreEqual(location, _logger.LastMessage);
+        Assert.Equal(location, _logger.LastMessage);
     }
 
-    [TestMethod]
+    [Fact]
     public void LogMark_IncludeNamespaceTypeAndMemberOnly()
     {
         // Arrange
@@ -164,6 +164,6 @@ public class LocationFormatTests
             nameof(LocationFormatTests),
             nameof(LogMark_IncludeNamespaceTypeAndMemberOnly)
         );
-        Assert.AreEqual(location, _logger.LastMessage);
+        Assert.Equal(location, _logger.LastMessage);
     }
 }

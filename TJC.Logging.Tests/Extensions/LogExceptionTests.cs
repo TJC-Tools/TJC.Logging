@@ -1,14 +1,15 @@
-﻿namespace TJC.Logging.Tests.Extensions;
+namespace TJC.Logging.Tests.Extensions;
 
-[TestClass]
+
+[Collection("Logging")]
+
+
 public class LogExceptionTests
 {
     private readonly MockTraceLogger _logger = new();
+    public LogExceptionTests() => Settings.Settings.ReloadDefaults(); // Reset settings before each test
 
-    [TestInitialize]
-    public void Initialize() => Settings.Settings.ReloadDefaults(); // Reset settings before each test
-
-    [TestMethod]
+    [Fact]
     public void LogException_ThrowException_ABC()
     {
         // Act
@@ -34,15 +35,15 @@ public class LogExceptionTests
         var result6 = result.Contains($@"\{nameof(LogExceptionTests)}.cs:line");
 
         // Assert
-        Assert.IsTrue(result1, "Calling class & method missing");
-        Assert.IsTrue(result2, "Exception type missing");
-        Assert.IsTrue(result3, "Message missing");
-        Assert.IsTrue(result4, "Source missing");
-        Assert.IsTrue(result5, "Stack Trace missing");
-        Assert.IsTrue(result6, "Line missing");
+        Assert.True(result1, "Calling class & method missing");
+        Assert.True(result2, "Exception type missing");
+        Assert.True(result3, "Message missing");
+        Assert.True(result4, "Source missing");
+        Assert.True(result5, "Stack Trace missing");
+        Assert.True(result6, "Line missing");
     }
 
-    [TestMethod]
+    [Fact]
     public void LogException_ThrowException_WithoutInnerException()
     {
         // Act
@@ -59,10 +60,10 @@ public class LogExceptionTests
         var result1 = result.Contains("Inner Exception:");
 
         // Assert
-        Assert.IsFalse(result1, "Inner exception present when it shouldn't be");
+        Assert.False(result1, "Inner exception present when it shouldn't be");
     }
 
-    [TestMethod]
+    [Fact]
     public void LogException_ThrowException_WithInnerException()
     {
         // Act
@@ -79,10 +80,10 @@ public class LogExceptionTests
         var result1 = result.Contains("Inner Exception: System.Exception: DEF");
 
         // Assert
-        Assert.IsTrue(result1, "Inner exception missing");
+        Assert.True(result1, "Inner exception missing");
     }
 
-    [TestMethod]
+    [Fact]
     public void LogException_ThrowException_WithStackTrace()
     {
         // Act
@@ -107,18 +108,18 @@ public class LogExceptionTests
         );
 
         // Assert
-        Assert.IsTrue(result1, "Stack trace new-lines with tabs not matching expected");
-        Assert.IsTrue(result2, "Stack trace new-lines with tabs not matching expected");
-        Assert.IsTrue(result3, "Stack trace new-lines with tabs not matching expected");
+        Assert.True(result1, "Stack trace new-lines with tabs not matching expected");
+        Assert.True(result2, "Stack trace new-lines with tabs not matching expected");
+        Assert.True(result3, "Stack trace new-lines with tabs not matching expected");
     }
 
-    [TestMethod]
+    [Fact]
     public void LogException_WithoutStackTrace_LogsEmptyStackTrace()
     {
         // Act
         _logger.LogException(new Exception("ABC"));
 
         // Assert
-        Assert.IsTrue(_logger.LastMessage?.Contains("Stack Trace: "));
+        Assert.True(_logger.LastMessage?.Contains("Stack Trace: "));
     }
 }

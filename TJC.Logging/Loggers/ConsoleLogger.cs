@@ -1,4 +1,4 @@
-﻿namespace TJC.Logging.Loggers;
+namespace TJC.Logging.Loggers;
 
 /// <summary>
 /// Simple logger for <see cref="Console"/>.

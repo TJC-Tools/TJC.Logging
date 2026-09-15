@@ -1,14 +1,15 @@
-﻿namespace TJC.Logging.Tests.Extensions.Specialty;
+namespace TJC.Logging.Tests.Extensions.Specialty;
 
-[TestClass]
+
+[Collection("Logging")]
+
+
 public class LogTrackerTests
 {
     private readonly MockTraceLogger _logger = new();
+    public LogTrackerTests() => Settings.Settings.ReloadDefaults();
 
-    [TestInitialize]
-    public void Initialize() => Settings.Settings.ReloadDefaults();
-
-    [TestMethod]
+    [Fact]
     public void LogStart_ShouldInitializeLogTracker()
     {
         // Arrange
@@ -24,13 +25,13 @@ public class LogTrackerTests
 
         // Assert
         var message = string.Concat(SpecialtyLogTypes.Tracker, name, CompletionStatus.Started);
-        Assert.AreEqual(message, _logger.LastMessage);
-        Assert.IsNotNull(tracker);
-        Assert.AreEqual(CompletionStatus.Started, tracker.CompletionStatus);
-        Assert.IsTrue(LogTracker.Trackers.Contains(tracker));
+        Assert.Equal(message, _logger.LastMessage);
+        Assert.NotNull(tracker);
+        Assert.Equal(CompletionStatus.Started, tracker.CompletionStatus);
+        Assert.True(LogTracker.Trackers.Contains(tracker));
     }
 
-    [TestMethod]
+    [Fact]
     public void LogEnd_ShouldCompleteLogTracker_WithSuccessStatus()
     {
         // Arrange
@@ -47,13 +48,13 @@ public class LogTrackerTests
 
         // Assert
         var message = string.Concat(SpecialtyLogTypes.Tracker, name, CompletionStatus.Success);
-        Assert.IsTrue(_logger.LastMessage?.StartsWith(message));
-        Assert.AreEqual(CompletionStatus.Success, tracker.CompletionStatus);
-        Assert.IsNotNull(tracker.EndTime);
-        Assert.IsFalse(LogTracker.Trackers.Contains(tracker));
+        Assert.True(_logger.LastMessage?.StartsWith(message));
+        Assert.Equal(CompletionStatus.Success, tracker.CompletionStatus);
+        Assert.NotNull(tracker.EndTime);
+        Assert.False(LogTracker.Trackers.Contains(tracker));
     }
 
-    [TestMethod]
+    [Fact]
     public void LogEnd_ShouldCompleteLogTracker_WithFailureStatus()
     {
         // Arrange
@@ -69,13 +70,13 @@ public class LogTrackerTests
 
         // Assert
         var message = string.Concat(SpecialtyLogTypes.Tracker, CompletionStatus.Failure);
-        Assert.IsTrue(_logger.LastMessage?.StartsWith(message));
-        Assert.AreEqual(CompletionStatus.Failure, tracker.CompletionStatus);
-        Assert.IsNotNull(tracker.EndTime);
-        Assert.IsFalse(LogTracker.Trackers.Contains(tracker));
+        Assert.True(_logger.LastMessage?.StartsWith(message));
+        Assert.Equal(CompletionStatus.Failure, tracker.CompletionStatus);
+        Assert.NotNull(tracker.EndTime);
+        Assert.False(LogTracker.Trackers.Contains(tracker));
     }
 
-    [TestMethod]
+    [Fact]
     public void LogEnd_ShouldInitializeNewTracker_IfNull()
     {
         // Arrange
@@ -90,11 +91,10 @@ public class LogTrackerTests
 
         // Assert
         var message = string.Concat(SpecialtyLogTypes.Tracker, CompletionStatus.Success);
-        Assert.IsTrue(_logger.LastMessage?.StartsWith(message));
+        Assert.True(_logger.LastMessage?.StartsWith(message));
     }
 
-    [TestMethod]
-    [ExpectedException(typeof(ArgumentException))]
+    [Fact]
     public void LogEnd_ShouldThrowArgumentException_ForStartedStatus()
     {
         // Arrange
@@ -105,11 +105,11 @@ public class LogTrackerTests
         Settings.Settings.Instance.Formatting.Specialty.Tracker.Separator = string.Empty;
         var tracker = new LogTracker();
 
-        // Act
-        _logger.LogEnd(tracker, CompletionStatus.Started);
+        // Act and Assert
+        Assert.Throws<ArgumentException>(() => _logger.LogEnd(tracker, CompletionStatus.Started));
     }
 
-    [TestMethod]
+    [Fact]
     public void LogSuccess_ShouldCompleteTracker()
     {
         // Arrange
@@ -119,11 +119,11 @@ public class LogTrackerTests
         _logger.LogSuccess(tracker);
 
         // Assert
-        Assert.AreEqual(CompletionStatus.Success, tracker.CompletionStatus);
-        Assert.IsNotNull(tracker.EndTime);
+        Assert.Equal(CompletionStatus.Success, tracker.CompletionStatus);
+        Assert.NotNull(tracker.EndTime);
     }
 
-    [TestMethod]
+    [Fact]
     public void LogFail_ShouldCompleteTrackerAndLogException()
     {
         // Arrange
@@ -134,11 +134,11 @@ public class LogTrackerTests
         _logger.LogFail(tracker, exception);
 
         // Assert
-        Assert.AreEqual(CompletionStatus.Failure, tracker.CompletionStatus);
-        Assert.IsTrue(_logger.LastMessage?.Contains("failure"));
+        Assert.Equal(CompletionStatus.Failure, tracker.CompletionStatus);
+        Assert.True(_logger.LastMessage?.Contains("failure"));
     }
 
-    [TestMethod]
+    [Fact]
     public void LogTracker_ExposesFormatProviderAndActiveTrackerCount()
     {
         // Arrange
@@ -151,9 +151,9 @@ public class LogTrackerTests
         tracker.Complete(CompletionStatus.Success);
 
         // Assert
-        Assert.AreEqual("message", tracker.Message);
-        Assert.AreEqual(LogLevel.Warning, tracker.LogLevel);
-        Assert.AreSame(tracker, formatProvider);
-        Assert.AreEqual(activeTrackerCount + 1, updatedTrackerCount);
+        Assert.Equal("message", tracker.Message);
+        Assert.Equal(LogLevel.Warning, tracker.LogLevel);
+        Assert.Same(tracker, formatProvider);
+        Assert.Equal(activeTrackerCount + 1, updatedTrackerCount);
     }
 }

@@ -4,10 +4,13 @@ using TJC.Logging.Providers;
 
 namespace TJC.Logging.Tests;
 
-[TestClass]
+
+[Collection("Logging")]
+
+
 public class InfrastructureTests
 {
-    [TestMethod]
+    [Fact]
     public void Providers_CreateConcreteLoggersAndDispose()
     {
         // Arrange
@@ -19,11 +22,11 @@ public class InfrastructureTests
         var traceLogger = traceProvider.CreateLogger("Trace");
 
         // Assert
-        Assert.IsInstanceOfType<ConsoleLogger>(consoleLogger);
-        Assert.IsInstanceOfType<TraceLogger>(traceLogger);
+        Assert.IsType<ConsoleLogger>(consoleLogger);
+        Assert.IsType<TraceLogger>(traceLogger);
     }
 
-    [TestMethod]
+    [Fact]
     public void ConcreteLoggers_AcceptScopesAndWriteMessages()
     {
         // Arrange
@@ -38,13 +41,13 @@ public class InfrastructureTests
         traceLogger.Log(LogLevel.Information, default, "message", null, formatter);
 
         // Assert
-        Assert.IsNull(consoleScope);
-        Assert.IsNull(traceScope);
-        Assert.IsTrue(consoleLogger.IsEnabled(LogLevel.None));
-        Assert.IsTrue(traceLogger.IsEnabled(LogLevel.None));
+        Assert.Null(consoleScope);
+        Assert.Null(traceScope);
+        Assert.True(consoleLogger.IsEnabled(LogLevel.None));
+        Assert.True(traceLogger.IsEnabled(LogLevel.None));
     }
 
-    [TestMethod]
+    [Fact]
     public void CompositeLogger_LogsOnlyToEnabledLoggers()
     {
         // Arrange
@@ -58,12 +61,12 @@ public class InfrastructureTests
         logger.Log(LogLevel.Warning, default, "message", null, (state, exception) => state);
 
         // Assert
-        Assert.IsTrue(isEnabled);
-        Assert.AreEqual(1, enabledLogger.LogCount);
-        Assert.AreEqual(0, disabledLogger.LogCount);
+        Assert.True(isEnabled);
+        Assert.Equal(1, enabledLogger.LogCount);
+        Assert.Equal(0, disabledLogger.LogCount);
     }
 
-    [TestMethod]
+    [Fact]
     public void LoggerFactory_ManagesProvidersAndRejectsUseAfterDisposal()
     {
         // Arrange
@@ -73,19 +76,19 @@ public class InfrastructureTests
         // Act
         factory.AddProvider(provider);
         var logger = factory.CreateLogger("Category");
-        var nullProviderException = Assert.ThrowsException<ArgumentNullException>(() =>
+        var nullProviderException = Assert.Throws<ArgumentNullException>(() =>
             factory.AddProvider(null!)
         );
         factory.Dispose();
         factory.Dispose();
 
         // Assert
-        Assert.IsNotNull(logger);
-        Assert.AreEqual("Category", provider.CategoryName);
-        Assert.AreEqual(1, provider.DisposeCount);
-        Assert.AreEqual("provider", nullProviderException.ParamName);
-        Assert.ThrowsException<ObjectDisposedException>(() => factory.AddProvider(provider));
-        Assert.ThrowsException<ObjectDisposedException>(() => factory.CreateLogger("Category"));
+        Assert.NotNull(logger);
+        Assert.Equal("Category", provider.CategoryName);
+        Assert.Equal(1, provider.DisposeCount);
+        Assert.Equal("provider", nullProviderException.ParamName);
+        Assert.Throws<ObjectDisposedException>(() => factory.AddProvider(provider));
+        Assert.Throws<ObjectDisposedException>(() => factory.CreateLogger("Category"));
     }
 
     private sealed class RecordingProvider : ILoggerProvider

@@ -1,4 +1,4 @@
-﻿namespace TJC.Logging.Settings;
+namespace TJC.Logging.Settings;
 
 /// <summary>
 /// Settings for logging.

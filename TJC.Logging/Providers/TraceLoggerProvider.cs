@@ -1,4 +1,4 @@
-﻿namespace TJC.Logging.Providers;
+namespace TJC.Logging.Providers;
 
 /// <summary>
 /// Provider for <seealso cref="TraceLogger"/>.

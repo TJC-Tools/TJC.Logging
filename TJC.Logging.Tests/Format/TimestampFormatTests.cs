@@ -1,14 +1,15 @@
-﻿namespace TJC.Logging.Tests.Format;
+namespace TJC.Logging.Tests.Format;
 
-[TestClass]
+
+[Collection("Logging")]
+
+
 public class TimestampFormatTests
 {
     private readonly MockTraceLogger _logger = new();
+    public TimestampFormatTests() => Logging.Settings.Settings.ReloadDefaults(); // Reset logger settings before each test
 
-    [TestInitialize]
-    public void Initialize() => Logging.Settings.Settings.ReloadDefaults(); // Reset logger settings before each test
-
-    [TestMethod]
+    [Fact]
     public void LogMark_IncludeTimestampOnly()
     {
         // Arrange
@@ -27,7 +28,7 @@ public class TimestampFormatTests
         var logDateValid =
             _logger.LastMessage is not null
             && (_logger.LastMessage.Equals(before) || _logger.LastMessage.Equals(after));
-        Assert.IsTrue(
+        Assert.True(
             logDateValid,
             $"[{_logger.LastMessage}] does not match [Before: {before}] OR [After: {after}]"
         );

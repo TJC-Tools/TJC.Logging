@@ -1,4 +1,4 @@
-﻿namespace TJC.Logging.Loggers;
+namespace TJC.Logging.Loggers;
 
 internal class CompositeLogger(IEnumerable<ILogger> loggers) : ILogger
 {

@@ -1,4 +1,4 @@
-﻿namespace TJC.Logging.Settings.Format.Specialty;
+namespace TJC.Logging.Settings.Format.Specialty;
 
 /// <summary>
 /// Formatting settings for <seealso cref="LogGetExtension"/> &amp; <seealso cref="LogSetExtension"/>.

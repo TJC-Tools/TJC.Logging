@@ -1,4 +1,4 @@
-﻿namespace TJC.Logging.Trackers;
+namespace TJC.Logging.Trackers;
 
 /// <summary>
 /// Log tracker.

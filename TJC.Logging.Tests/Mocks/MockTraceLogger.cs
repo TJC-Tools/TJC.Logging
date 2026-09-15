@@ -1,4 +1,4 @@
-﻿namespace TJC.Logging.Tests.Mocks;
+namespace TJC.Logging.Tests.Mocks;
 
 /// <summary>
 /// Mock Trace Logger for Testing.

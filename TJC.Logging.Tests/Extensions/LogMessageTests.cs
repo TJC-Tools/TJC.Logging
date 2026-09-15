@@ -1,14 +1,15 @@
-﻿namespace TJC.Logging.Tests.Extensions;
+namespace TJC.Logging.Tests.Extensions;
 
-[TestClass]
+
+[Collection("Logging")]
+
+
 public class LogMessageTests
 {
     private readonly MockTraceLogger _logger = new();
+    public LogMessageTests() => Settings.Settings.ReloadDefaults(); // Reset settings before each test
 
-    [TestInitialize]
-    public void Initialize() => Settings.Settings.ReloadDefaults(); // Reset settings before each test
-
-    [TestMethod]
+    [Fact]
     public void LogMessage_ABC()
     {
         // Arrange
@@ -20,6 +21,6 @@ public class LogMessageTests
         var result = _logger.LastMessage;
 
         // Assert
-        Assert.AreEqual(message, result);
+        Assert.Equal(message, result);
     }
 }

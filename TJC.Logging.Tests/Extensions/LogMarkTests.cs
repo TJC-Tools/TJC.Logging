@@ -1,17 +1,18 @@
-﻿namespace TJC.Logging.Tests.Extensions;
+namespace TJC.Logging.Tests.Extensions;
 
-[TestClass]
+
+[Collection("Logging")]
+
+
 public class LogMarkTests
 {
     private readonly MockTraceLogger _logger = new();
 
     private static string ThisNamespace =>
         typeof(LogMarkTests).Namespace ?? nameof(TJC.Logging.Tests.Extensions);
+    public LogMarkTests() => Logging.Settings.Settings.ReloadDefaults(); // Reset logger settings before each test
 
-    [TestInitialize]
-    public void Initialize() => Logging.Settings.Settings.ReloadDefaults(); // Reset logger settings before each test
-
-    [TestMethod]
+    [Fact]
     public void LogMark_PrintsLocationInformation()
     {
         // Arrange
@@ -21,19 +22,19 @@ public class LogMarkTests
         _logger.LogMark();
 
         // Assert
-        Assert.IsNotNull(
-            _logger.LastMessage,
+        Assert.True(
+            _logger.LastMessage is not null,
             $"{nameof(MockTraceLogger.LastMessage)} is null after calling {nameof(LogMarkExtension.LogMark)}"
         );
-        Assert.IsTrue(
+        Assert.True(
             _logger.LastMessage.Contains(ThisNamespace),
             $"{nameof(LogMarkExtension.LogMark)} does not include namespace"
         );
-        Assert.IsTrue(
+        Assert.True(
             _logger.LastMessage.Contains(nameof(LogMarkTests)),
             $"{nameof(LogMarkExtension.LogMark)} does not include type name"
         );
-        Assert.IsTrue(
+        Assert.True(
             _logger.LastMessage.Contains(nameof(LogMark_PrintsLocationInformation)),
             $"{nameof(LogMarkExtension.LogMark)} does not include member name"
         );

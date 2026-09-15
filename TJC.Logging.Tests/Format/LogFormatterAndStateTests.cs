@@ -3,10 +3,13 @@ using TJC.Logging.States;
 
 namespace TJC.Logging.Tests.Format;
 
-[TestClass]
+
+[Collection("Logging")]
+
+
 public class LogFormatterAndStateTests
 {
-    [TestMethod]
+    [Fact]
     public void Formatter_AppendsMessageAndExceptionToState()
     {
         // Arrange
@@ -17,11 +20,11 @@ public class LogFormatterAndStateTests
         var emptyStateResult = formatter(null!, null);
 
         // Assert
-        Assert.AreEqual("state message | Exception: failure", result);
-        Assert.AreEqual(" message", emptyStateResult);
+        Assert.Equal("state message | Exception: failure", result);
+        Assert.Equal(" message", emptyStateResult);
     }
 
-    [TestMethod]
+    [Fact]
     public void LogState_ExposesValuesAndFormatsItself()
     {
         // Arrange
@@ -35,10 +38,10 @@ public class LogFormatterAndStateTests
         var formatted = state.ToString();
 
         // Assert
-        Assert.AreEqual(SpecialtyLogTypes.None, state.Specialty);
-        Assert.AreEqual("Member", state.MemberName);
-        Assert.AreEqual(7, state.LineNumber);
-        Assert.AreSame(state, state.GetFormat(null));
-        Assert.IsNotNull(formatted);
+        Assert.Equal(SpecialtyLogTypes.None, state.Specialty);
+        Assert.Equal("Member", state.MemberName);
+        Assert.Equal(7, state.LineNumber);
+        Assert.Same(state, state.GetFormat(null));
+        Assert.NotNull(formatted);
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace TJC.Logging.Interfaces;
+namespace TJC.Logging.Interfaces;
 
 internal interface IPrimaryFormatterSettings : IIncludable, IFormattable
 {

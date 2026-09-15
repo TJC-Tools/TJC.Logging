@@ -1,4 +1,4 @@
-﻿namespace TJC.Logging.Helpers;
+namespace TJC.Logging.Helpers;
 
 internal static class FormatterHelpers
 {

@@ -1,4 +1,4 @@
-﻿namespace TJC.Logging.States;
+namespace TJC.Logging.States;
 
 /// <summary>
 /// Used to store the state of the log when called

@@ -1,4 +1,4 @@
-﻿namespace TJC.Logging.Settings.Format;
+namespace TJC.Logging.Settings.Format;
 
 /// <summary>
 /// Format location settings.

@@ -1,4 +1,4 @@
-﻿namespace TJC.Logging.Formatter;
+namespace TJC.Logging.Formatter;
 
 internal static class LogFormatter
 {

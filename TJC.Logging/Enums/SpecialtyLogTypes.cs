@@ -1,4 +1,4 @@
-﻿namespace TJC.Logging.Enums;
+namespace TJC.Logging.Enums;
 
 internal enum SpecialtyLogTypes
 {

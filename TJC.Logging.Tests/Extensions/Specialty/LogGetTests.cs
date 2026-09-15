@@ -1,14 +1,15 @@
-﻿namespace TJC.Logging.Tests.Extensions.Specialty;
+namespace TJC.Logging.Tests.Extensions.Specialty;
 
-[TestClass]
+
+[Collection("Logging")]
+
+
 public class LogGetTests
 {
     private readonly MockTraceLogger _logger = new();
+    public LogGetTests() => Settings.Settings.ReloadDefaults(); // Reset logger settings before each test
 
-    [TestInitialize]
-    public void Initialize() => Settings.Settings.ReloadDefaults(); // Reset logger settings before each test
-
-    [TestMethod]
+    [Fact]
     public void LogGet_IsNull()
     {
         // Arrange
@@ -24,12 +25,12 @@ public class LogGetTests
         var value2 = _logger.LogGet(value1);
 
         // Assert
-        Assert.AreEqual(null, value2);
+        Assert.Equal(null, value2);
         var expected = string.Concat(nameof(SpecialtyLogTypes.Get), nameof(value1), " is null");
-        Assert.AreEqual(expected, _logger.LastMessage);
+        Assert.Equal(expected, _logger.LastMessage);
     }
 
-    [TestMethod]
+    [Fact]
     public void LogGet_IntIs6()
     {
         // Arrange
@@ -47,12 +48,12 @@ public class LogGetTests
         var value2 = _logger.LogGet(value1);
 
         // Assert
-        Assert.AreEqual(value1, value2);
+        Assert.Equal(value1, value2);
         var expected = string.Concat(
             nameof(SpecialtyLogTypes.Get),
             nameof(value1),
             value1.ToString()
         );
-        Assert.AreEqual(expected, _logger.LastMessage);
+        Assert.Equal(expected, _logger.LastMessage);
     }
 }

@@ -1,13 +1,11 @@
 namespace TJC.Logging.Tests;
 
-[TestClass]
-public sealed class TestAssembly
-{
-    [AssemblyInitialize]
-    public static void Initialize(TestContext context) => MockMarkdownLogger.ResetLog();
 
-    [AssemblyCleanup]
-    public static void WriteMarkdownCalloutSamples()
+public sealed class LoggingTestFixture : IDisposable
+{
+    public LoggingTestFixture() => MockMarkdownLogger.ResetLog();
+
+    public void Dispose()
     {
         TJC.Logging.Settings.Settings.ReloadDefaults();
         TJC.Logging.Settings.Settings.Instance.Formatting =
@@ -28,7 +26,10 @@ public sealed class TestAssembly
             "Exception message",
             LogLevel.Error,
             exception: new Exception("Sample exception"),
-            memberName: nameof(WriteMarkdownCalloutSamples)
+            memberName: nameof(Dispose)
         );
     }
 }
+
+[CollectionDefinition("Logging", DisableParallelization = true)]
+public sealed class LoggingTestCollection : ICollectionFixture<LoggingTestFixture> { }

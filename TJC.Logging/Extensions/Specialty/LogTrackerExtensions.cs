@@ -1,4 +1,4 @@
-﻿namespace TJC.Logging.Extensions.Specialty;
+namespace TJC.Logging.Extensions.Specialty;
 
 /// <summary>
 /// Extensions for <seealso cref="LogTracker"/>.

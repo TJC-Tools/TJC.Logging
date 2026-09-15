@@ -1,4 +1,4 @@
-﻿namespace TJC.Logging.Extensions;
+namespace TJC.Logging.Extensions;
 
 /// <summary>
 /// Extensions for logging steps in a process.

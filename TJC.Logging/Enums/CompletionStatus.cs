@@ -1,4 +1,4 @@
-﻿namespace TJC.Logging.Enums;
+namespace TJC.Logging.Enums;
 
 /// <summary>
 /// Indicates the state of the completed <see cref="LogTracker"/>

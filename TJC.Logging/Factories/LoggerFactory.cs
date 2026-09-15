@@ -1,4 +1,4 @@
-﻿namespace TJC.Logging.Factories;
+namespace TJC.Logging.Factories;
 
 /// <summary>
 /// Logger Factory.

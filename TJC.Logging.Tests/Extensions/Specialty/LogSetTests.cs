@@ -1,14 +1,15 @@
-﻿namespace TJC.Logging.Tests.Extensions.Specialty;
+namespace TJC.Logging.Tests.Extensions.Specialty;
 
-[TestClass]
+
+[Collection("Logging")]
+
+
 public class LogSetTests
 {
     private readonly MockTraceLogger _logger = new();
+    public LogSetTests() => Settings.Settings.ReloadDefaults(); // Reset logger settings before each test
 
-    [TestInitialize]
-    public void Initialize() => Settings.Settings.ReloadDefaults(); // Reset logger settings before each test
-
-    [TestMethod]
+    [Fact]
     public void LogSet_IntFrom7To8()
     {
         // Arrange
@@ -28,7 +29,7 @@ public class LogSetTests
         _logger.LogSet(ref num, after);
 
         // Assert
-        Assert.AreEqual(after, num);
+        Assert.Equal(after, num);
         var expected = string.Concat(
             nameof(SpecialtyLogTypes.Set),
             nameof(num),
@@ -37,6 +38,6 @@ public class LogSetTests
             " to ",
             after.ToString()
         );
-        Assert.AreEqual(expected, _logger.LastMessage);
+        Assert.Equal(expected, _logger.LastMessage);
     }
 }
