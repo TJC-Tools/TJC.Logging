@@ -3,10 +3,7 @@ using TJC.Logging.States;
 
 namespace TJC.Logging.Tests.Format;
 
-
 [Collection("Logging")]
-
-
 public class LogFormatterAndStateTests
 {
     [Fact]

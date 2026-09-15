@@ -3,10 +3,7 @@ using TJC.Logging.Settings.Format.Specialty;
 
 namespace TJC.Logging.Tests.Format;
 
-
 [Collection("Logging")]
-
-
 public class FormattingSettingsTests
 {
     [Fact]
@@ -35,10 +32,7 @@ public class FormattingSettingsTests
 
         // Assert
         Assert.Equal(state.DateTime.ToString("yyyy"), timestampResult);
-        Assert.Equal(
-            "[TJC.Logging.Tests.Format.FormattingSettingsTests.Member.7]",
-            locationResult
-        );
+        Assert.Equal("[TJC.Logging.Tests.Format.FormattingSettingsTests.Member.7]", locationResult);
         Assert.Equal("<Get>", specialtyResult);
         Assert.Throws<NotImplementedException>(() => timestamp.ToString(null, null));
         Assert.Throws<NotImplementedException>(() => location.ToString(null, null));
@@ -86,7 +80,7 @@ public class FormattingSettingsTests
 
         // Assert
         Assert.Equal(string.Empty, excluded);
-        Assert.True(included.Contains("FormattingSettingsTests"));
+        Assert.Contains("FormattingSettingsTests", included);
         Assert.Throws<NotImplementedException>(() => settings.ToString(null, null));
         Assert.Throws<NotImplementedException>(() => settings.ToString());
     }
@@ -134,7 +128,7 @@ public class FormattingSettingsTests
 
         // Assert
         Assert.Equal(" Started", active);
-        Assert.True(completed.StartsWith(" Success ["));
+        Assert.StartsWith(" Success [", completed);
         Assert.Throws<NotImplementedException>(() => settings.ToString(null, null));
     }
 

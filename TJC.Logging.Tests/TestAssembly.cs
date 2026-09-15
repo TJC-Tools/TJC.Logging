@@ -1,6 +1,5 @@
 namespace TJC.Logging.Tests;
 
-
 public sealed class LoggingTestFixture : IDisposable
 {
     public LoggingTestFixture() => MockMarkdownLogger.ResetLog();
