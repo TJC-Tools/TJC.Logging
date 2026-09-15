@@ -32,7 +32,10 @@ public class FormattingSettingsTests
 
         // Assert
         Assert.AreEqual(state.DateTime.ToString("yyyy"), timestampResult);
-        Assert.AreEqual("[TJC.Logging.Tests.Format.FormattingSettingsTests.Member.7]", locationResult);
+        Assert.AreEqual(
+            "[TJC.Logging.Tests.Format.FormattingSettingsTests.Member.7]",
+            locationResult
+        );
         Assert.AreEqual("<Get>", specialtyResult);
         Assert.ThrowsException<NotImplementedException>(() => timestamp.ToString(null, null));
         Assert.ThrowsException<NotImplementedException>(() => location.ToString(null, null));
@@ -65,7 +68,12 @@ public class FormattingSettingsTests
     {
         // Arrange
         var settings = new FormattingSettings { Separator = "|" };
-        var state = new TestLogState(SpecialtyLogTypes.None, typeof(FormattingSettingsTests), "Member", 7);
+        var state = new TestLogState(
+            SpecialtyLogTypes.None,
+            typeof(FormattingSettingsTests),
+            "Member",
+            7
+        );
 
         // Act
         settings.ExcludeAll();
