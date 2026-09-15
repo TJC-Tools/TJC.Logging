@@ -1,15 +1,13 @@
 namespace TJC.Logging.Tests.Extensions;
 
-
 [Collection("Logging")]
-
-
 public class LogMarkTests
 {
     private readonly MockTraceLogger _logger = new();
 
     private static string ThisNamespace =>
         typeof(LogMarkTests).Namespace ?? nameof(TJC.Logging.Tests.Extensions);
+
     public LogMarkTests() => Logging.Settings.Settings.ReloadDefaults(); // Reset logger settings before each test
 
     [Fact]

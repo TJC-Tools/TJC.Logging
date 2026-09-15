@@ -4,10 +4,7 @@ using TJC.Logging.Providers;
 
 namespace TJC.Logging.Tests;
 
-
 [Collection("Logging")]
-
-
 public class InfrastructureTests
 {
     [Fact]
