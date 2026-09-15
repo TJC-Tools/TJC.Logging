@@ -82,6 +82,24 @@ public class FormatMarkdownSettingsTests
     }
 
     [TestMethod]
+    public void FormatLog_ExpandedCalloutOmitsEmptyExceptionLine()
+    {
+        var state = new TestLogState(SpecialtyLogTypes.None, null, "", 0);
+        var settings = new FormatMarkdownSettings
+        {
+            IsCollapsed = false,
+            ContentFormat = "{Message}\nException: {Exception}",
+        };
+
+        var result = settings.FormatLog(state, "message", null, LogLevel.None);
+
+        Assert.AreEqual(
+            $"> [!NOTE] [UNKNOWN_TYPE.]{Environment.NewLine}> message{Environment.NewLine}{Environment.NewLine}",
+            result
+        );
+    }
+
+    [TestMethod]
     public void FormatLog_UsesCalloutTypeForLogLevel()
     {
         // Arrange
